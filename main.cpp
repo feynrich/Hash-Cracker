@@ -1,22 +1,31 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <sstream>
+#include "sha.cpp"
+#include "md5/md5.h"
 
+std::string hashfunc(std::string pass, int func) {
 
-std::string hashfunc(std::string pass, std::string func) {
+    if (func == 1) {
+
+        return sha256(pass);
+    }
+    else if (func == 2) {
+
+        return md5(pass);
+    }
 
 }
 
-auto wordlist(std::string hash, std::string func) {
+auto wordlist(std::string hash, int func) {
     std::string path;
-
+    std::cout << "Enter file's path: ";
     std::cin >> path;
 
     std::string s;
     std::string hashes;
 
-    std::ifstream file(path);
+    std::ifstream file(path+".txt");
 
     int i = 1;
     while (std::getline(file, s)) {
@@ -30,24 +39,57 @@ auto wordlist(std::string hash, std::string func) {
     exit(0);
 }
 
-auto numlist(std::string hash, std::string func) {
+auto numlist(std::string hash, int func) {
     int i = 0;
     std::string hashes;
 
     while (true) {
         std::string str = std::to_string(i);
+        std::cout << i << std::endl;
         hashes = hashfunc(str, func);
+        std::cout << hashes << std::endl;
 
         if (hashes == hash) {
                 std::cout << "Success! Password: " << i;
                 exit(0);
         }
+        i++;
     }
 }
 
 
-int main(int argc, char *argv[]) {
+int main() {
+    std::string hashes;
+    int func;
+    int mode;
 
+    std::cout << hashfunc("qwertyuio", 1) << std::endl;
+    std::cout << "Choose crack mode:" << std::endl;
+    std::cout << "1 - Wordlist" << std::endl;
+    std::cout << "2 - Enumeration of numbers" << std::endl;
+    std::cout << "3 - Random enumeration" << std::endl;
+
+    std::cin >> mode;
+
+    std::cout << "Choose hash-function:" << std::endl;
+    std::cout << "1 - SHA256" << std::endl;
+    std::cout << "2 - MD5" << std::endl;
+
+    std::cin >> func;
+
+    std::cout << "Enter hash:" << std::endl;
+
+    std::cin >> hashes;
+
+    switch(mode) {
+        case 1:
+            wordlist(hashes, func);
+
+        case 2:
+            numlist(hashes, func);
+    }
+
+    return 0;
 }
 
 
