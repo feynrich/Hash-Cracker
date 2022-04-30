@@ -3,4 +3,4 @@ project(Hash-Cracker)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(proj main.cpp md5/md5.cpp md5/md5.h)
+add_executable(proj main.cpp )

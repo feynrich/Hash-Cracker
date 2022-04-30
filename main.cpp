@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include "sha.cpp"
-#include "md5/md5.h"
+#include "md5(1.0).cpp"
 
 std::string hashfunc(std::string pass, int func) {
 
@@ -12,7 +12,7 @@ std::string hashfunc(std::string pass, int func) {
     }
     else if (func == 2) {
 
-        return md5(pass);
+        return md52(pass);
     }
 
 }
@@ -27,7 +27,6 @@ auto wordlist(std::string hash, int func) {
 
     std::ifstream file(path+".txt");
 
-    int i = 1;
     while (std::getline(file, s)) {
         hashes = hashfunc(s, func);
         if (hashes == hash) {
@@ -62,8 +61,8 @@ int main() {
     std::string hashes;
     int func;
     int mode;
+    int i = 12;
 
-    std::cout << hashfunc("qwertyuio", 1) << std::endl;
     std::cout << "Choose crack mode:" << std::endl;
     std::cout << "1 - Wordlist" << std::endl;
     std::cout << "2 - Enumeration of numbers" << std::endl;
@@ -80,6 +79,9 @@ int main() {
     std::cout << "Enter hash:" << std::endl;
 
     std::cin >> hashes;
+
+
+
 
     switch(mode) {
         case 1:
