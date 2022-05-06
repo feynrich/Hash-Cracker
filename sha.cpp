@@ -13,15 +13,6 @@ std::bitset<32> ROTRIGHT(std::bitset<32> x, int n){
     return x;
 }
 
-std::bitset<32> ROTLEFT(std::bitset<32> x, int n){
-    for (int i = 0; i < n; i++){
-        int bit = x[31];
-        x = x << 1;
-        x[0] = bit;
-    }
-    return x;
-}
-
 std::bitset<32> XOR(std::bitset<32> x, std::bitset<32> y)
 {
     return x^y;
@@ -123,31 +114,6 @@ std::vector<std::bitset<32>> initsupvar(std::vector<std::bitset<32>> H, std::vec
 
     return SUP;
 }
-
-/*uint32_t initsupvar(std::vector<uint32_t> H, std::vector<uint32_t> sqhash, std::vector<uint32_t> word_64){
-
-    uint32_t T1;
-    std::bitset<32> T2;
-
-    std::vector<uint32_t> SUP = H;
-
-    for(int i = 0; i < 64; i++){
-        T1 = MERGE(XOR(XOR(ROTRIGHT(SUP[4], 6), ROTRIGHT(SUP[4], 11)), ROTRIGHT(SUP[4], 25)), MERGE(XOR(SUP[4]&SUP[5], ~SUP[4] & SUP[6]), MERGE(SUP[7], MERGE(sqhash[i], word_64[i]))));
-        T2 = MERGE(XOR(XOR(ROTRIGHT(SUP[0], 2), ROTRIGHT(SUP[0], 13)), ROTRIGHT(SUP[0], 22)),  (SUP[0] & (SUP[1] | SUP[2])) | (SUP[1] & SUP[2]));
-
-        SUP[7] = SUP[6];
-        SUP[6] = SUP[5];
-        SUP[5] = SUP[4];
-        SUP[4] = SUP[3] + SUP[1];
-        SUP[3] = SUP[2];
-        SUP[2] = SUP[1];
-        SUP[1] = SUP[0];
-        SUP[0] = MERGE(T1, T2);
-    }
-
-    return SUP;
-}*/
-
 
 std::vector<std::bitset<32>> makebinaryhash(std::string pass){
 

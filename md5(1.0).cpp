@@ -18,6 +18,15 @@ std::bitset<32> FunI(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
     return y ^ (x | ~z);
 }
 
+std::bitset<32> ROTLEFT(std::bitset<32> x, int n){
+    for (int i = 0; i < n; i++){
+        int bit = x[31];
+        x = x << 1;
+        x[0] = bit;
+    }
+    return x;
+}
+
 std::vector<std::bitset<32>> begin_var0 = {
         0x67452301,
         0xefcdab89,
@@ -100,15 +109,25 @@ std::vector<bool> tobinsubseq1(std::string input) {
 
     int bin_len = input_bin.length();
 
+    std::cout << bin_len << std::endl;
+
     std::string input_pl = input_bin + "1";
 
     int input_pl_len = 448 - (input_pl.length() % 512);
+
+    if (bin_len + 1 > 447)  {
+        input_pl_len = 512 - (input_pl.length() % 448);
+    }
+
+
 
     for (int i = 1; i < input_pl_len + 1; i++) {
         input_pl.insert(input_bin.length() + i, "0");
     }
 
     input_pl += little_endian2(std::bitset<64>(bin_len).to_string());
+
+    //std::cout << input_pl << std::endl;
 
     std::vector<bool> binout;
 
@@ -122,52 +141,50 @@ std::vector<bool> tobinsubseq1(std::string input) {
 std::vector<std::bitset<32>> makesubhash(std::string input) {
 
     std::vector<bool> bitmsg = tobinsubseq1(input);
-    std::vector<std::bitset<32>> blockset = {};
 
+    int N = bitmsg.size()/512;
+    std::cout << N << std::endl;
+    std::vector<std::bitset<32>> begin_var = begin_var0;
 
-    for (int i = 0; i < 16; i++) {
-        std::string binblock = "";
+    for (int k = 0; k < N; k++) {
+        std::vector<std::bitset<32>> H = begin_var0;
 
-        for (int j = (i * 32); j < ((i + 1) * 32); j++) {
-            if (bitmsg[j]) {
-                binblock += "1";
-            } else {
-                binblock += "0";
+        std::vector<std::bitset<32>> blockset = {};
+
+        for (int i = 0; i < 16; i++) {
+            std::string binblock = "";
+
+            for (int j = (i * 32); j < ((i + 1) * 32); j++) {
+                if (bitmsg[512*k + j]) {
+                    binblock += "1";
+                } else {
+                    binblock += "0";
+                }
             }
+
+            blockset.push_back(std::bitset<32>(little_endian2(binblock)));
+            //std::cout << std::bitset<32>(little_endian2(binblock)) << std::endl;
+
         }
 
-        blockset.push_back(std::bitset<32>(little_endian2(binblock)));
-
-
-    }
-
-        std::vector<std::bitset<32>> H = begin_var0;
-        std::vector<std::bitset<32>> begin_var = begin_var0;
-
-        for(int j = 0; j < 64; j++) {
+        for (int j = 0; j < 64; j++) {
             std::bitset<32> F;
             int g;
 
             if (j < 16) {
                 F = FunF(H[1], H[2], H[3]);
                 g = j;
-            }
-
-            else if (j < 32) {
+            } else if (j < 32) {
                 F = FunG(H[1], H[2], H[3]);
-                g = (5*j + 1) % 16;
+                g = (5 * j + 1) % 16;
 
-            }
-
-            else if (j < 48){
+            } else if (j < 48) {
                 F = FunH(H[1], H[2], H[3]);
-                g = (3*j + 5) % 16;
+                g = (3 * j + 5) % 16;
 
-            }
-
-            else {
+            } else {
                 F = FunI(H[1], H[2], H[3]);
-                g = (7*j) % 16;
+                g = (7 * j) % 16;
 
             }
 
@@ -177,14 +194,36 @@ std::vector<std::bitset<32>> makesubhash(std::string input) {
             H[2] = H[1];
             H[1] = MERGE(H[1], ROTLEFT(F, s[j]));
 
+            //std::cout << blockset[g] << std::endl;
+
         }
-            begin_var[0] = MERGE(begin_var[0], H[0]);
-            begin_var[1] = MERGE(begin_var[1], H[1]);
-            begin_var[2] = MERGE(begin_var[2], H[2]);
-            begin_var[3] = MERGE(begin_var[3], H[3]);
+
+
+        std::cout << std::bitset<32>(H[0]) << std::endl;
+        std::cout << std::bitset<32>(H[1]) << std::endl;
+        std::cout << std::bitset<32>(H[2]) << std::endl;
+        std::cout << std::bitset<32>(H[3]) << std::endl;
+
+
+        begin_var[0] = MERGE(begin_var[0], H[0]);
+        begin_var[1] = MERGE(begin_var[1], H[1]);
+        begin_var[2] = MERGE(begin_var[2], H[2]);
+        begin_var[3] = MERGE(begin_var[3], H[3]);
+
+        /*std::cout << std::bitset<32>(begin_var[0]) << std::endl;
+        std::cout << std::bitset<32>(begin_var[1]) << std::endl;
+        std::cout << std::bitset<32>(begin_var[2]) << std::endl;
+        std::cout << std::bitset<32>(begin_var[3]) << std::endl;*/
+
+        /*begin_var[0] = MERGE(begin_var[0], std::bitset<32>("10001100101010010101111111001001"));
+        begin_var[1] = MERGE(begin_var[1], H[1]);
+        begin_var[2] = MERGE(begin_var[2], H[2]);
+        begin_var[3] = MERGE(begin_var[3], H[3]);
+*/
+    }
 
     return begin_var;
-};
+    };
 
 std::string little_endian(std::string input) {
     std::string litstr = "";

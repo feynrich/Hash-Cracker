@@ -56,12 +56,18 @@ auto numlist(std::string hash, int func) {
     }
 }
 
+std::vector<std::bitset<32>> buff {
+
+};
 
 int main() {
     std::string hashes;
     int func;
     int mode;
-    int i = 12;
+
+    std::cout << hashfunc("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", 2) << std::endl;
+    //std::cout << hashfunc("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", 2) << std::endl;
+    //std::cout << hashfunc("qqq", 2) << std::endl;
 
     std::cout << "Choose crack mode:" << std::endl;
     std::cout << "1 - Wordlist" << std::endl;
