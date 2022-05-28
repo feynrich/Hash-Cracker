@@ -440,54 +440,52 @@ auto combine(std::vector<std::string> pass_array,int amount_of_words){
     return 0;
 
 }
-int main_generator (){
+int main_generator () {
     std::string choose;
-    std::cout <<"Choose type of password generation:"
-                "\n1 - random generation"
-                "\n2 - by word generation\n";
+    std::cout << "Choose type of password generation:"
+                 "\n1 - random generation"
+                 "\n2 - by word generation\n";
 
     std::cin >> choose;
-    if(choose == "1") {
+    if (choose == "1") {
         int pass_leng;
         std::cout << "Enter the amount of symbols in passwords:";
         std::cin >> pass_leng;
         generator_txt(pass_leng);
     }
-    if(choose == "2"){
+    if (choose == "2") {
         int amount_of_words;
         std::cout << "Enter the amount of words in passwords:";
         std::cin >> amount_of_words;
         std::string word_array[amount_of_words];
-        for(unsigned int i = 0; i < amount_of_words;i++){
+        for (unsigned int i = 0; i < amount_of_words; i++) {
             std::cout << "enter your word(-s):\n";
             std::cin >> word_array[i];
         }
 
         std::vector<std::string> pass_array1 = by_word_generator_normal_order(amount_of_words, word_array);
         std::vector<std::string> pass_array2 = by_word_generator_reverse_order(amount_of_words, word_array);
-        std::reverse(pass_array2.begin(),pass_array2.end());
+        std::reverse(pass_array2.begin(), pass_array2.end());
         int n = int(pass_array1.size()) + int(pass_array2.size());
         std::vector<std::string> pass_array_sum(n);
         int a = 0;
         int b = 1;
-        if(amount_of_words > 1) {
+        if (amount_of_words > 1) {
 
-            for(int i = 0; i < pass_array1.size(); i++){
-                pass_array_sum.insert(pass_array_sum.begin() + a ,pass_array1[i]);
+            for (int i = 0; i < pass_array1.size(); i++) {
+                pass_array_sum.insert(pass_array_sum.begin() + a, pass_array1[i]);
                 a = a + 2;
 
             }
 
-            for(int i = 0; i < pass_array2.size(); i++ ){
-                pass_array_sum.insert(pass_array_sum.begin() + b ,pass_array2[i]);
+            for (int i = 0; i < pass_array2.size(); i++) {
+                pass_array_sum.insert(pass_array_sum.begin() + b, pass_array2[i]);
                 b = b + 2;
             }
             combine(pass_array_sum, amount_of_words);
         }
         return 0;
     }
-
-
 
 
 }
