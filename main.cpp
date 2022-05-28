@@ -3,7 +3,7 @@
 #include <string>
 #include "sha.cpp"
 #include "md5(1.0).cpp"
-
+#include "gen.cpp"
 std::string hashfunc(std::string pass, int func) {
 
     if (func == 1) {
@@ -64,8 +64,9 @@ int main() {
     std::string hashes;
     int func;
     int mode;
+    main_generator();
 
-    std::cout << hashfunc("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", 2) << std::endl;
+    //std::cout << hashfunc("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", 2) << std::endl;
     //std::cout << hashfunc("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", 2) << std::endl;
     //std::cout << hashfunc("qqq", 2) << std::endl;
 

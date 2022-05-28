@@ -6,7 +6,7 @@
 #include <cmath>
 #include <algorithm>
 #include <cstring>
-#include "md5(1.0).cpp"
+
 
 std::string alphabet[62] = { "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I" ,
                              "J" , "K" , "L" , "M" , "N" , "O" , "P" , "Q" , "R" ,
@@ -47,7 +47,7 @@ auto generator_txt(int pass_leng){
         fclose(file);
     }
     else{
-        std::cout <<  "May be next time...";
+        std::cout <<  "May be next time...\n";
     }
 }
 
@@ -440,7 +440,7 @@ auto combine(std::vector<std::string> pass_array,int amount_of_words){
     return 0;
 
 }
-int main (){
+int main_generator (){
     std::string choose;
     std::cout <<"Choose type of password generation:"
                 "\n1 - random generation"
