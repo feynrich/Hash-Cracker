@@ -4,6 +4,9 @@
 #include "sha.cpp"
 #include "md5(1.0).cpp"
 #include "gen.cpp"
+#define UNICODE
+#include <windows.h>
+#include <conio.h>
 std::string hashfunc(std::string pass, int func) {
 
     if (func == 1) {
@@ -60,42 +63,56 @@ std::vector<std::bitset<32>> buff {
 
 };
 
-int main() {
+int main(int argc, char* argv[]) {
+
     std::string hashes;
     int func;
     int mode;
-    main_generator();
-
-    //std::cout << hashfunc("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", 2) << std::endl;
-    //std::cout << hashfunc("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", 2) << std::endl;
-    //std::cout << hashfunc("qqq", 2) << std::endl;
-
-    std::cout << "Choose crack mode:" << std::endl;
-    std::cout << "1 - Wordlist" << std::endl;
-    std::cout << "2 - Enumeration of numbers" << std::endl;
-    std::cout << "3 - Random enumeration" << std::endl;
-
-    std::cin >> mode;
-
-    std::cout << "Choose hash-function:" << std::endl;
-    std::cout << "1 - SHA256" << std::endl;
-    std::cout << "2 - MD5" << std::endl;
-
-    std::cin >> func;
-
-    std::cout << "Enter hash:" << std::endl;
-
-    std::cin >> hashes;
-
-
-
-
-    switch(mode) {
+    int choose;
+    char Buffer[256];
+    wchar_t *text = TEXT(
+                         "██╗░░██╗░█████╗░░██████╗██╗░░██╗░░░░░░░█████╗░██████╗░░█████╗░░█████╗░██╗░░██╗███████╗██████╗░\n"
+                         "██║░░██║██╔══██╗██╔════╝██║░░██║░░░░░░██╔══██╗██╔══██╗██╔══██╗██╔══██╗██║░██╔╝██╔════╝██╔══██╗\n"
+                         "███████║███████║╚█████╗░███████║█████╗██║░░╚═╝██████╔╝███████║██║░░╚═╝█████═╝░█████╗░░██████╔╝\n"
+                         "██╔══██║██╔══██║░╚═══██╗██╔══██║╚════╝██║░░██╗██╔══██╗██╔══██║██║░░██╗██╔═██╗░██╔══╝░░██╔══██╗\n"
+                         "██║░░██║██║░░██║██████╔╝██║░░██║░░░░░░╚█████╔╝██║░░██║██║░░██║╚█████╔╝██║░╚██╗███████╗██║░░██║\n"
+                         "╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝░░░░░░░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝\n"
+                         "project by BAG_student, feynrich, millerocky \n");
+    CharToOemW(text, Buffer);
+    std::cout << Buffer;
+    std::cout << "Crack or generate, that is a question:"<< std::endl;
+    std::cout << "1 - CRACK IT!"<< std::endl;
+    std::cout << "2 - Generate your own txt"<< std::endl;
+    std::cin >> choose;
+    switch(choose){
         case 1:
-            wordlist(hashes, func);
+            std::cout << "Choose crack mode:" << std::endl;
+            std::cout << "1 - Wordlist" << std::endl;
+            std::cout << "2 - Enumeration of numbers" << std::endl;
+            std::cout << "3 - Random enumeration" << std::endl;
 
+            std::cin >> mode;
+
+            std::cout << "Choose hash-function:" << std::endl;
+            std::cout << "1 - SHA256" << std::endl;
+            std::cout << "2 - MD5" << std::endl;
+
+            std::cin >> func;
+
+            std::cout << "Enter hash:" << std::endl;
+
+            std::cin >> hashes;
+
+
+            switch(mode) {
+                case 1:
+                    wordlist(hashes, func);
+
+                case 2:
+                    numlist(hashes, func);
+            }
         case 2:
-            numlist(hashes, func);
+            main_generator();
     }
 
     return 0;
