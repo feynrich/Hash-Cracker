@@ -394,15 +394,13 @@ auto by_word_generator_reverse_order(int amount_of_words,std::string *word_array
 
 auto combine(std::vector<std::string> pass_array,int amount_of_words){
     std::string s;
-    int n=pass_array.size();
-    FILE * file = fopen("..\\dic\\word_pass.txt", "w");
+    std::ofstream out;
+    out.open("..\\dic\\word_pass.txt");
     s = "";
-    std::cout << "pustoy" << std::endl;
     for (int i = 0;i <= pass_array.size(); i++ ) {
         if (pass_array[i].empty()){
             pass_array.erase(pass_array.begin()+i);
         }
-        std::cout << i << " " << pass_array[i] << ' ';
     }
     int count = 0;
 
@@ -411,32 +409,21 @@ auto combine(std::vector<std::string> pass_array,int amount_of_words){
             count++;
         }
     }
-    std::cout << count;
-    std::cout << "\n";
-    std::cout << "------------------------";
+
     for (int i =0; i < count;i++) {
-        std::cout << "\n" << i << " " ;
-        std::cout << pass_array.size() << " ";
         for (int i = 0; i < count ; i++) {
 
             s = pass_array[i];
             pass_array[i] = pass_array[i + 1];
             pass_array[i + 1] = s;
-            std::cout << pass_array[i] << " ";
         }
-        if (!pass_array[0].empty() && !pass_array[1].empty()) {
-            s = pass_array[0] + pass_array[1];
-            std::cout << s << std::endl;
-            std::cout << "------------------------";
-            char char_pass[amount_of_words];
-            strcpy(char_pass, s.c_str());
-            bool res = fputs(char_pass, file);
-            fputs("\n", file);
 
-        }
+        s = pass_array[0] + pass_array[1];
+        out << s << std::endl;
 
         s = "";
     }
+    std::cout << "Your file is ready!?";
     return 0;
 
 }
