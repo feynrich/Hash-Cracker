@@ -412,7 +412,6 @@ auto combine(std::vector<std::string> pass_array,int amount_of_words){
 
     for (int i =0; i < count;i++) {
         for (int i = 0; i < count ; i++) {
-
             s = pass_array[i];
             pass_array[i] = pass_array[i + 1];
             pass_array[i + 1] = s;
@@ -442,23 +441,22 @@ int main_generator () {
             generator_txt(pass_leng);
         case 2:
             int amount_of_words;
-            std::cout << "Enter the amount of words in passwords:";
+            std::cout << "Enter the amount of words in passwords [2 or more]:";
             std::cin >> amount_of_words;
-            std::string word_array[amount_of_words];
-            for (unsigned int i = 0; i < amount_of_words; i++) {
-                std::cout << "enter your word(-s):\n";
-                std::cin >> word_array[i];
-            }
-
-            std::vector<std::string> pass_array1 = by_word_generator_normal_order(amount_of_words, word_array);
-            std::vector<std::string> pass_array2 = by_word_generator_reverse_order(amount_of_words, word_array);
-            std::reverse(pass_array2.begin(), pass_array2.end());
-            int n = int(pass_array1.size()) + int(pass_array2.size());
-            std::vector<std::string> pass_array_sum(n);
-            int a = 0;
-            int b = 1;
             if (amount_of_words > 1) {
+                std::string word_array[amount_of_words];
+                for (unsigned int i = 0; i < amount_of_words; i++) {
+                    std::cout << "enter your " << i + 1 <<  " word:\n";
+                    std::cin >> word_array[i];
+                }
 
+                std::vector<std::string> pass_array1 = by_word_generator_normal_order(amount_of_words, word_array);
+                std::vector<std::string> pass_array2 = by_word_generator_reverse_order(amount_of_words, word_array);
+                std::reverse(pass_array2.begin(), pass_array2.end());
+                int n = int(pass_array1.size()) + int(pass_array2.size());
+                std::vector<std::string> pass_array_sum(n);
+                int a = 0;
+                int b = 1;
                 for (int i = 0; i < pass_array1.size(); i++) {
                     pass_array_sum.insert(pass_array_sum.begin() + a, pass_array1[i]);
                     a = a + 2;
@@ -470,6 +468,8 @@ int main_generator () {
                     b = b + 2;
                 }
                 combine(pass_array_sum, amount_of_words);
+            } else {
+                std::cout << "please enter 2 or more words!";
             }
     }
     return 0;
