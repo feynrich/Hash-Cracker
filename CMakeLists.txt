@@ -3,4 +3,4 @@ project(Hash-Cracker)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(proj main.cpp )
+add_executable(proj src/main.cpp)
