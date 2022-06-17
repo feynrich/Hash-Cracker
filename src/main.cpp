@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include "md5.cpp"
+#include "sha.cpp"
 #include "gen.cpp"
 
 #define UNICODE
@@ -90,6 +91,7 @@ int main() {
     std::cout << "1 - CRACK IT!" << std::endl;
     std::cout << "2 - Generate your own txt" << std::endl;
     std::cin >> choose;
+    std::cout << strtobin("qwerty")
     switch (choose) {
         case 1: {
 

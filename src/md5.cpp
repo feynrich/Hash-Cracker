@@ -1,7 +1,8 @@
 #include<bitset>
 #include<string>
 #include<vector>
-#include "sha.cpp"
+#include<sstream>
+#include <iostream>
 
 /*
 Множество функция Fun - функции проводящие операции над битовым потоком
@@ -32,6 +33,12 @@ std::bitset<32> ROTLEFT(std::bitset<32> x, int n) {
         x[0] = bit;
     }
     return x;
+}
+
+std::bitset<32> MERGE_MD5(std::bitset<32> x, std::bitset<32> y) {
+    int sum0 = x.to_ulong() + y.to_ulong();
+    std::bitset<32> sum(sum0);
+    return sum;
 }
 
 std::vector<std::bitset<32>> begin_var0 = {
@@ -81,12 +88,21 @@ auto make_little_endian(std::string input) {
     return litstr;
 }
 
+std::string strtobin_sec(std::string &message) {
+    std::string binstr;
+
+    for (int i = 0; i < message.length(); i++) {
+        binstr += std::bitset<8>(message[i]).to_string();
+    }
+    return binstr;
+}
+
 auto tobinsubseq1(std::string &input) {
     /*
       Функция которая выравнивает битовый поток
     */
 
-    std::string input_bin = strtobin(input);
+    std::string input_bin = strtobin_sec(input);
 
     int bin_len = input_bin.length();
 
@@ -163,19 +179,19 @@ auto makesubhash(std::string &input) {
 
             }
 
-            F = MERGE(MERGE(F, H[0]), MERGE(const_[j], blockset[g]));
+            F = MERGE_MD5(MERGE_MD5(F, H[0]), MERGE_MD5(const_[j], blockset[g]));
             H[0] = H[3];
             H[3] = H[2];
             H[2] = H[1];
-            H[1] = MERGE(H[1], ROTLEFT(F, s[j]));
+            H[1] = MERGE_MD5(H[1], ROTLEFT(F, s[j]));
 
         }
 
 
-        begin_var[0] = MERGE(begin_var[0], H[0]);
-        begin_var[1] = MERGE(begin_var[1], H[1]);
-        begin_var[2] = MERGE(begin_var[2], H[2]);
-        begin_var[3] = MERGE(begin_var[3], H[3]);
+        begin_var[0] = MERGE_MD5(begin_var[0], H[0]);
+        begin_var[1] = MERGE_MD5(begin_var[1], H[1]);
+        begin_var[2] = MERGE_MD5(begin_var[2], H[2]);
+        begin_var[3] = MERGE_MD5(begin_var[3], H[3]);
 
     }
 
@@ -224,7 +240,7 @@ auto hash1(std::vector<std::bitset<32>> buffer) {
     return hash_str;
 }
 
-auto md5(std::string &input) {
+auto md5(std::string input) {
     /*
       вызов функции hash1 - то есть замыкание
      */
