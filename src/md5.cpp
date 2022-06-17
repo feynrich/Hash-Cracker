@@ -3,6 +3,9 @@
 #include<vector>
 #include "sha.cpp"
 
+/*
+Множество функция Fun - функции проводящие операции над битовым потоком
+    */
 std::bitset<32> FunG(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
     return (x & z) | (~z & y);
 }
@@ -20,6 +23,9 @@ std::bitset<32> FunI(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
 }
 
 std::bitset<32> ROTLEFT(std::bitset<32> x, int n) {
+    /*
+      Циклический сдвиг влево
+    */
     for (int i = 0; i < n; i++) {
         int bit = x[31];
         x = x << 1;
@@ -63,6 +69,9 @@ const std::vector<int> s = {
 };
 
 auto make_little_endian(std::string input) {
+    /*
+      Функция которая производит запись битовой послед-ти в формате little endian
+    */
     std::string litstr;
     for (auto i = input.length() / 8; i > 0; i--) {
         for (auto j = 8 * i - 8; j < 8 * i; j++) {
@@ -73,6 +82,9 @@ auto make_little_endian(std::string input) {
 }
 
 auto tobinsubseq1(std::string &input) {
+    /*
+      Функция которая выравнивает битовый поток
+    */
 
     std::string input_bin = strtobin(input);
 
@@ -102,6 +114,9 @@ auto tobinsubseq1(std::string &input) {
 }
 
 auto makesubhash(std::string &input) {
+    /*
+      Функция проводящая вычисление хеша по блоку в цикле
+    */
 
     std::vector<bool> bitmsg = tobinsubseq1(input);
 
@@ -169,6 +184,9 @@ auto makesubhash(std::string &input) {
 }
 
 auto little_endian(std::string input) {
+    /*
+      запись битовой послед-ти в формате 2 бита
+     */
     std::string litstr;
     for (auto i = input.length() / 2; i > 0; i--) {
         for (auto j = 2 * (i - 1); j < 2 * i; j++) {
@@ -180,6 +198,9 @@ auto little_endian(std::string input) {
 }
 
 auto hash_little_endian(std::bitset<32> buffer) {
+    /*
+      запись битовой послед-ти в формате little endian в 16-й код
+     */
     std::stringstream hash_out;
     std::string hashdigest;
     hash_out << std::hex << buffer.to_ulong();
@@ -193,6 +214,9 @@ auto hash_little_endian(std::bitset<32> buffer) {
 }
 
 auto hash1(std::vector<std::bitset<32>> buffer) {
+    /*
+      соединение хеша из 4-х блоков
+     */
     std::string hash_str;
     for (int i = 0; i < 4; i++) {
         hash_str += hash_little_endian(buffer[i]);
@@ -201,6 +225,9 @@ auto hash1(std::vector<std::bitset<32>> buffer) {
 }
 
 auto md5(std::string &input) {
+    /*
+      вызов функции hash1 - то есть замыкание
+     */
 
     return hash1(makesubhash(input));
 }

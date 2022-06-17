@@ -10,6 +10,9 @@
 #include <conio.h>
 
 std::string hashfunc(std::string pass, int func) {
+    /*
+      Функция которая проблема хеширования
+    */
     switch (func) {
         case 1:
             return sha256(pass);
@@ -22,7 +25,11 @@ std::string hashfunc(std::string pass, int func) {
 
 }
 
+//
 auto wordlist(std::string hash, int func) {
+    /*
+      Функция которая запускает перебор пароля по словарю
+    */
     std::string path;
     std::cout << "Enter file's path: ";
     std::cin >> path;
@@ -44,6 +51,9 @@ auto wordlist(std::string hash, int func) {
 }
 
 auto numlist(std::string hash, int func) {
+    /*
+      Функция которая производит численный перебор словаря
+     */
     int i = 0;
     std::string hashes;
 
@@ -61,6 +71,9 @@ auto numlist(std::string hash, int func) {
 }
 
 int main() {
+    /*
+      Функция main - рут функция проекта
+     */
     int choose;
     char Buffer[256];
     wchar_t *text = TEXT(
