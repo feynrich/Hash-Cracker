@@ -238,7 +238,7 @@ auto outputhash(std::vector<std::bitset<32>> &binhash) {
      Возвращает итоговый хэш
      * @param pass - итоговая строка
      */ 
-auto sha256(std::string pass) {
+auto sha256(std::string &pass) {
     std::vector<std::bitset<32>> subhash = makebinaryhash(pass);
     return outputhash(subhash);
 }

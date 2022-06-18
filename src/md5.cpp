@@ -94,7 +94,7 @@ auto make_little_endian(std::string &input) {
       Функция которая переводит строку в битовую последовательность
       * @param message - строка для изменения
     */
-std::string strtobin_sec(std::string message) {
+std::string strtobin_sec(std::string &message) {
     std::string binstr;
 
     for (int i = 0; i < message.length(); i++) {

@@ -4,7 +4,7 @@
 #include "md5.h"
 #include "sha.h"
 #include "gen.h"
-//ddjdjdjb
+
 
 TEST_CASE ("Checking MD5 hash") {
     std::string str1 = "smartlms";
@@ -28,9 +28,9 @@ TEST_CASE ("Checking SHA2 hash") {
     std::string str1 = "qwertyuiop123456";
     std::string str2 = "feynrich";
     std::string str3 = "hsepassword";
-            REQUIRE(sha256(str1) == "0485df2c3af8d7cf5c97cb73bf18dd00e78979c88d1488121e01000e36190667");
-            REQUIRE(sha256(str2) == "845f9b6b65366ce7aa6108353d082f5b22d799fac3cce77d54414d5027ab80ad");
-            REQUIRE(sha256(str3) == "fd532ebfec5043ab6ac1c5243dad93b27245dc0ccc2f72a4268f8d9eff6b9162");
+            REQUIRE(sha256(str1) == "e3f7c6cc5e7dd9f105f4bcd05e1477f108f0d17b0178e1221b1b09a2096dda4e");
+            REQUIRE(sha256(str2) == "461582758f7bc7b3ef14f7d326c66655d9678403cb0cd760a879cc1c3bf89955");
+            REQUIRE(sha256(str3) == "db2a195881dc873cc86bb6d75cc8578e5e9d2f5f05d27d449111843ab0cfa044");
 }
 
 TEST_CASE ("Checking string to binary") {
