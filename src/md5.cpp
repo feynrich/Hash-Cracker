@@ -54,14 +54,14 @@ std::bitset<32> MERGE_MD5(std::bitset<32> x, std::bitset<32> y) {
     std::bitset<32> sum(sum0);
     return sum;
 }
-
+///Инициализация буфера
 std::vector<std::bitset<32>> begin_var0 = {
         0x67452301,
         0xefcdab89,
         0x98badcfe,
         0x10325476,
 };
-
+///64-элементная таблица данных, построенная следующим образом int(4294967296*|sin(i)|)
 const std::vector<std::bitset<32>> const_ = {
         0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
         0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
@@ -80,7 +80,7 @@ const std::vector<std::bitset<32>> const_ = {
         0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1,
         0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391
 };
-
+//таблица значения циклических сдвигов
 const std::vector<int> cyclic_shift = {
         7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
         5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
