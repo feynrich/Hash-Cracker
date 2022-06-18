@@ -32,7 +32,7 @@ std::bitset<32> MERGE(std::bitset<32> x, std::bitset<32> y) {
     return sum;
 }
 
-std::string strtobin(std::string &message) {
+std::string strtobin(std::string message) {
     /*
       Преобразование строки в битовую послед-ть
      */

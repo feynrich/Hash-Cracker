@@ -9,6 +9,7 @@
     */
 std::bitset<32> FunG(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
     return (x & z) | (~z & y);
+
 }
 
 std::bitset<32> FunF(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
@@ -213,7 +214,7 @@ auto little_endian(std::string input) {
 
 }
 
-auto hash_little_endian(std::bitset<32> buffer) {
+auto hash_little_endian(std::bitset<32> &buffer) {
     /*
       запись битовой послед-ти в формате little endian в 16-й код
      */
@@ -240,7 +241,7 @@ auto hash1(std::vector<std::bitset<32>> buffer) {
     return hash_str;
 }
 
-auto md5(std::string input) {
+auto md5(std::string &input) {
     /*
       вызов функции hash1 - то есть замыкание
      */

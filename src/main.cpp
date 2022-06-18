@@ -91,10 +91,9 @@ int main() {
     std::cout << "1 - CRACK IT!" << std::endl;
     std::cout << "2 - Generate your own txt" << std::endl;
     std::cin >> choose;
-    std::cout << strtobin("qwerty")
+    std::cout << little_endian("10101010100000101010101010");
     switch (choose) {
         case 1: {
-
             int func;
             int mode;
             std::string hashes;
