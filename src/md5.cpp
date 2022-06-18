@@ -4,8 +4,8 @@
 #include<sstream>
 #include<iostream>
 
-/*
-Множество функций Fun - функции проводящие операции над битовым потоком
+    /**
+    Множество функций Fun - функции проводящие операции над битовым потоком
     */
 std::bitset<32> FunG(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
     return (x & z) | (~z & y);
@@ -23,11 +23,12 @@ std::bitset<32> FunH(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
 std::bitset<32> FunI(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
     return y ^ (x | ~z);
 }
-
-std::bitset<32> ROTLEFT(std::bitset<32> x, int n) {
     /**
       Циклический сдвиг влево
+      * @param n - каунтер
     */
+std::bitset<32> ROTLEFT(std::bitset<32> x, int n) {
+     
     for (int i = 0; i < n; i++) {
         int bit = x[31];
         x = x << 1;
@@ -75,12 +76,12 @@ const std::vector<int> s = {
         6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21
 
 };
-
-auto make_little_endian(std::string input) {
     /**
       Функция которая производит запись битовой послед-ти в формате little endian
-      input: входная строка
+      * @param string - строка для изменения
     */
+auto make_little_endian(std::string input) {
+   
     std::string litstr;
     for (auto i = input.length() / 8; i > 0; i--) {
         for (auto j = 8 * i - 8; j < 8 * i; j++) {
@@ -89,24 +90,24 @@ auto make_little_endian(std::string input) {
     }
     return litstr;
 }
-
+   /**
+      Функция которая переводит строку в битовую последовательность
+      * @param message - строка для изменения
+    */
 std::string strtobin_sec(std::string &message) {
     std::string binstr;
-    /**
-      Функция которая переводит строку в битовую последовательность
-    */
 
     for (int i = 0; i < message.length(); i++) {
         binstr += std::bitset<8>(message[i]).to_string();
     }
     return binstr;
 }
-
-auto tobinsubseq1(std::string &input) {
-    /**
+     /**
       Функция которая выравнивает битовый поток
-      input: битовой поток для выравнивания
+      * @param string - строка для изменения
     */
+auto tobinsubseq1(std::string &input) {
+   
 
     std::string input_bin = strtobin_sec(input);
 
@@ -134,12 +135,11 @@ auto tobinsubseq1(std::string &input) {
     return binout;
 
 }
-
-auto makesubhash(std::string &input) {
-    /*!
+   /**
       Функция проводящая вычисление хеша по блоку в цикле
-      input: битовый поток длиной 512 бита
+      * @param string - строка по которой производится вычисление
     */
+auto makesubhash(std::string &input) {
 
     std::vector<bool> bitmsg = tobinsubseq1(input);
 
@@ -205,11 +205,12 @@ auto makesubhash(std::string &input) {
 
     return begin_var;
 }
-
-auto little_endian(std::string input) {
-    /**
+      /**
       запись битовой послед-ти в формате little-endian по 2 бита
+      * @param string - строка для записи
      */
+auto little_endian(std::string input) {
+    
     std::string litstr;
     for (auto i = input.length() / 2; i > 0; i--) {
         for (auto j = 2 * (i - 1); j < 2 * i; j++) {
@@ -219,12 +220,12 @@ auto little_endian(std::string input) {
     return litstr;
 
 }
-
-auto hash_little_endian(std::bitset<32> &buffer) {
-    /**
+     /**
       запись битовой послед-ти в формате little endian в 16-й код
-      buffer: битовый массив (блок хеша)
+      * @param buffer - битовое множ-во
      */
+auto hash_little_endian(std::bitset<32> &buffer) {
+    
     std::stringstream hash_out;
     std::string hashdigest;
     hash_out << std::hex << buffer.to_ulong();
@@ -236,24 +237,24 @@ auto hash_little_endian(std::bitset<32> &buffer) {
     }
     return hashdigest;
 }
-
-auto hash1(std::vector<std::bitset<32>> buffer) {
-    /**
+     /**
       соединение хеша из 4-х блоков
-      buffer: вектор, содержащий блоки хеша
+      * @param массив бинарных чисел
      */
+auto hash1(std::vector<std::bitset<32>> buffer) {
+  
     std::string hash_str;
     for (int i = 0; i < 4; i++) {
         hash_str += hash_little_endian(buffer[i]);
     }
     return hash_str;
 }
-
-auto md5(std::string input) {
     /**
       вызов функции hash1 - то есть замыкание
-      input: строка для хеширования
+      * @param string - строка на входе
      */
+auto md5(std::string input) {
+    
 
     return hash1(makesubhash(input));
 }

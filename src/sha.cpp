@@ -3,13 +3,12 @@
 #include<string>
 #include<vector>
 #include<iostream>
-
-std::bitset<32> ROTRIGHT(std::bitset<32> x, int n) {
-    /*!
+      /**
       Циклический сдвиг вправо
-      x: битовый массив
-      n: порядок сдвига
+      * @param множ-во бинарных чисел и n - число инициализатор
      */
+std::bitset<32> ROTRIGHT(std::bitset<32> x, int n) {
+    
     for (int i = 0; i < n; i++) {
         int bit = x[0];
         x = x >> 1;
@@ -17,31 +16,30 @@ std::bitset<32> ROTRIGHT(std::bitset<32> x, int n) {
     }
     return x;
 }
-
-std::bitset<32> XOR(std::bitset<32> x, std::bitset<32> y) {
-    /*!
-      Логическая операция исключающее "или"
-      x: битовая строка
-      y: битовая строка
+    /**
+      Логическая операция исключающая "или"
+      * @param множ-во бинарных чисел
      */
+std::bitset<32> XOR(std::bitset<32> x, std::bitset<32> y) {
+    
     return x ^ y;
 }
-
-std::bitset<32> MERGE(std::bitset<32> x, std::bitset<32> y) {
-    /*!
+    /**
       Возвращает рез-тат побитового сложения
-      x: битовая строка
-      y: битовая строка
+      * @param множ-во бинарных чисел
      */
+std::bitset<32> MERGE(std::bitset<32> x, std::bitset<32> y) {
+    
     int sum0 = x.to_ulong() + y.to_ulong();
     std::bitset<32> sum(sum0);
     return sum;
 }
-
-std::string strtobin(std::string message) {
-    /*!
+    /**
       Преобразование строки в битовую послед-ть
+      * @param message - строка которую изменяют
      */
+std::string strtobin(std::string message) {
+    
     std::string binstr;
 
     for (int i = 0; i < message.length(); i++) {
@@ -50,12 +48,12 @@ std::string strtobin(std::string message) {
     return binstr;
 }
 
-
-auto tobinsubseq(std::string &input) {
-    /*!
+    /**
       Функция которая выравнивает битовый поток
-      input: исходная строка в битовом формате
+      * @param input - строка которую изменяют
      */
+auto tobinsubseq(std::string &input) {
+    
 
     std::string input_bin = strtobin(input);
     int bin_len = input_bin.length();
@@ -76,12 +74,12 @@ auto tobinsubseq(std::string &input) {
 
     return binout;
 }
-
-auto extrawords(std::bitset<512> &message) {
-    /*!
+    /**
      Генерация дополнительных слов для хэша
-     message: выровненный битовый поток
+     * @param message - множ-во битов
     */
+auto extrawords(std::bitset<512> &message) {
+   
 
     int bin_len = 512;
     int count = bin_len - 1;
@@ -116,14 +114,12 @@ auto extrawords(std::bitset<512> &message) {
 
     return messagesset;
 }
-
-auto initsupvar(std::vector<std::bitset<32>> H, std::vector<std::bitset<32>> sqhash, std::vector<std::bitset<32>> word_64) {
-    /*!
-     Инициализация вспомогательных переменных
-     H: вектор из значений квадратных корней натуральных чисел
-     sqhash: вектор из значений кубических корней натуральных чисел
-     word_64: блок битового сообщения
+    /**
+     Инициализация вспомогательных элементов
+     * @param множ-во битовых последовательностей
      */
+auto initsupvar(std::vector<std::bitset<32>> H, std::vector<std::bitset<32>> sqhash, std::vector<std::bitset<32>> word_64) {
+    
 
     std::bitset<32> T1;
     std::bitset<32> T2;
@@ -148,12 +144,12 @@ auto initsupvar(std::vector<std::bitset<32>> H, std::vector<std::bitset<32>> sqh
 
     return SUP;
 }
-
-auto makebinaryhash(std::string pass) {
-    /*!
+    /**
      Создание бинарного хэша
-     pass: исходное сообщение
+     * @param - pass - строка для создания хэша
      */
+auto makebinaryhash(std::string pass) {
+    
 
     std::vector<std::bitset<32>> H_vector = {0x6a09e667,
                                       0xbb67ae85,
@@ -219,12 +215,12 @@ auto makebinaryhash(std::string pass) {
 
     return hashedblock;
 }
-
-auto outputhash(std::vector<std::bitset<32>> binhash) {
-    /*!
+    /**
      Возвращает из блоков созданную отхэшированную строку
-     binhash: ветктор из хэше, разбитого на блоки
+     * @param binhash - массив чисел
     */
+auto outputhash(std::vector<std::bitset<32>> binhash) {
+    
 
     std::string outputhash = "";
 
@@ -238,11 +234,12 @@ auto outputhash(std::vector<std::bitset<32>> binhash) {
     }
     return outputhash;
 }
-
+    /**
+     Возвращает итоговый хэш
+     * @param pass - итоговая строка
+     */ 
 auto sha256(std::string pass) {
-    /*!
-     Возвращает итоговый хеш
-     */
+    
     return outputhash(makebinaryhash(pass));;
 }
 

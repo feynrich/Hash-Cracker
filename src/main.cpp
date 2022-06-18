@@ -8,11 +8,12 @@
 #define UNICODE
 
 #include <windows.h>
-
-std::string hashfunc(std::string pass, int func) {
-    /*
-      Функция вызывающая хэш-функцию
+    /**
+    * Функция вызывающая хэш-функцию
+    *  @param pass - изменяемая строка и func - инициализатор функции
     */
+std::string hashfunc(std::string pass, int func) {
+    
     switch (func) {
         case 1:
             return sha256(pass);
@@ -24,12 +25,13 @@ std::string hashfunc(std::string pass, int func) {
     return nullptr;
 
 }
-
-//
-auto wordlist(std::string hash, int func) {
-    /*
-      Функция которая запускает перебор пароля по словарю
+    /**
+      * Функция которая запускает перебор пароля по словарю
+      * @param hash - изменяемая строка и func - инициализатор функции
     */
+
+auto wordlist(std::string hash, int func) {
+  
     std::string path;
     std::cout << "Enter file's path: ";
     std::cin >> path;
@@ -49,11 +51,12 @@ auto wordlist(std::string hash, int func) {
     std::cout << "No match found.";
     exit(0);
 }
-
-auto numlist(std::string hash, int func) {
-    /*
+      /**
       Функция которая производит численный перебор
+      * @param hash - изменяемая строка и func - инициализатор функции
      */
+auto numlist(std::string hash, int func) {
+   
     int i = 0;
     std::string hashes;
 
@@ -69,7 +72,9 @@ auto numlist(std::string hash, int func) {
         i++;
     }
 }
-
+     /**
+      Функция main - рут функция проекта
+     */
 int main() {
     /*
       Функция main - рут функция проекта
