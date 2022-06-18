@@ -4,38 +4,38 @@
 #include<sstream>
 #include<iostream>
 
-    /**
-    Множество функций Fun - функции проводящие операции над битовым потоком
+/*!
+    FunG - логическая операция для 2-го этапа выичисления в цикле
+     @param: x, y, z - битовые потоки
+
     */
 std::bitset<32> FunG(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
-        /**
-        Множество функций Fun - функции проводящие операции над битовым потоком
-        */
     return (x & z) | (~z & y);
 
 }
-
-std::bitset<32> FunF(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
-    /**
-    Множество функций Fun - функции проводящие операции над битовым потоком
+/*!
+   FunF - логическая операция для 2-го этапа выичисления в цикле
+   @param: x, y, z - битовые потоки
     */
+std::bitset<32> FunF(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
     return (x & y) | (~x & z);
 }
-
-std::bitset<32> FunH(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
-    /**
-    Множество функций Fun - функции проводящие операции над битовым потоком
+/*!
+    Операция исключающего "ИЛИ" для 3-x переменных для 3-его этапа вычисления в цикле
+     @param: x, y, z - битовые потоки
     */
+std::bitset<32> FunH(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
     return x ^ y ^ z;
 }
 
 std::bitset<32> FunI(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
-    /**
-    Множество функций Fun - функции, проводящие операции над битовым потоком
+    /*!
+    FunF - логическая операция для 4-го этапа выичисления в цикле
+     @param: x, y, z - битовые потоки
     */
     return y ^ (x | ~z);
 }
-    /**
+    /*!
       Циклический сдвиг влево
       * @param n - каунтер
     */
@@ -88,7 +88,7 @@ const std::vector<int> s = {
         6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21
 
 };
-    /**
+    /*!
       Функция которая производит запись битовой послед-ти в формате little endian
       * @param string - строка для изменения
     */
@@ -102,7 +102,7 @@ auto make_little_endian(std::string const&input) {
     }
     return litstr;
 }
-   /**
+   /*!
       Функция которая переводит строку в битовую последовательность
       * @param message - строка для изменения
     */
@@ -114,7 +114,7 @@ std::string strtobin_sec(std::string const& message) {
     }
     return binstr;
 }
-     /**
+     /*!
       Функция которая выравнивает битовый поток
       * @param string - строка для изменения
     */
@@ -147,7 +147,7 @@ auto tobinsubseq1(std::string &input) {
     return binout;
 
 }
-   /**
+   /*!
       Функция проводящая вычисление хеша по блоку в цикле
       * @param string - строка по которой производится вычисление
     */
@@ -217,7 +217,7 @@ auto makesubhash(std::string &input) {
 
     return begin_var;
 }
-      /**
+      /*!
       запись битовой послед-ти в формате little-endian по 2 бита
       * @param string - строка для записи
      */
@@ -232,7 +232,7 @@ auto little_endian(std::string const&input) {
     return litstr;
 
 }
-     /**
+     /*!
       запись битовой послед-ти в формате little endian в 16-й код
       * @param buffer - битовое множ-во
      */
@@ -250,7 +250,7 @@ auto hash_little_endian(std::bitset<32> &buffer) {
     }
     return hashdigest;
 }
-     /**
+     /*!
       соединение хеша из 4-х блоков
       * @param массив бинарных чисел
      */
@@ -262,7 +262,7 @@ auto hash1(std::vector<std::bitset<32>> &buffer) {
     }
     return hash_str;
 }
-    /**
+    /*!
       вызов функции hash1 - то есть замыкание
       * @param string - строка на входе
      */
