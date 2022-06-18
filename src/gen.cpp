@@ -47,6 +47,7 @@ auto generator_txt(int pass_leng) {
         }
 
         fclose(file);
+        std::cout << "Your file is ready!?";
     } else {
         std::cout << "May be next time...\n";
     }
