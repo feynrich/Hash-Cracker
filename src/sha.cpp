@@ -2,7 +2,7 @@
 #include<bitset>
 #include<string>
 #include<vector>
-#include <iostream>
+#include<iostream>
 
 std::bitset<32> ROTRIGHT(std::bitset<32> x, int n) {
     /*!
