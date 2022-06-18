@@ -203,6 +203,7 @@ auto reverse_order_s1_replace(int counter_s,std::string word,std::vector <std::s
     return word;
 }
 
+
 auto reverse_order_i1_replace(int counter_i,std::string word,std::vector <std::string> &pass_array) {
     /*!
     функция, заменяющая все i в строке на 1 в обратном порядке
