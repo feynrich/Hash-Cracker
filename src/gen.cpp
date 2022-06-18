@@ -16,10 +16,14 @@ std::string alphabet[62] = {"A", "B", "C", "D", "E", "F", "G", "H", "I",
                             "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
                             "v", "w", "x", "y", "z"};
 
-
+    /** функция, вызывающая выбор режима работы генерации паролей и исполняемые функции
+    
+    * @param pass_leng - длина создаваемых паролей 
+    
+    */
 auto generator_txt(int pass_leng) {
-    /*! функция, вызывающая выбор режима работы генерации паролей и исполняемые функции
-     */
+   
+  
     std::string string_in_txt;
     std::string answer;
     srand(time(nullptr));
@@ -47,12 +51,15 @@ auto generator_txt(int pass_leng) {
         std::cout << "May be next time...\n";
     }
 }
-
+     /*!
+     функция, заменяющая все s в строке на $
+     * @param counter_s - количество букв s в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
+     */
 auto normal_order_s1_replace(int counter_s,std::string word,std::vector <std::string> &pass_array)  {
 
-    /*!
-     функция, заменяющая все s в строке на $
-     */
+    
     if (counter_s == 1) {
 
         pass_array.push_back(word.replace(word.find('s'), 1, "$"));
@@ -66,11 +73,14 @@ auto normal_order_s1_replace(int counter_s,std::string word,std::vector <std::st
     return word;
 
 }
-
-auto normal_order_i1_replace(int counter_i,std::string word,std::vector <std::string> &pass_array) {
-    /*!
+     /*!
      функция, заменяющая все i в строке на 1
+     * @param counter_i - количество букв i в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
      */
+auto normal_order_i1_replace(int counter_i,std::string word,std::vector <std::string> &pass_array) {
+    
     if (counter_i == 1) {
         pass_array.push_back(word.replace(word.find('i'), 1, "1"));
     }
@@ -83,11 +93,14 @@ auto normal_order_i1_replace(int counter_i,std::string word,std::vector <std::st
     return word;
 
 }
-
-auto normal_order_o_replace(auto &counter_o,std::string word,std::vector <std::string> &pass_array) {
-    /*!
+     /*!
      функция, заменяющая все o в строке на 0
+     * @param counter_o - количество букв o в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
      */
+auto normal_order_o_replace(auto &counter_o,std::string word,std::vector <std::string> &pass_array) {
+    
     if (counter_o == 1) {
         pass_array.push_back(word.replace(word.find('o'), 1, "0"));
     }
@@ -100,10 +113,14 @@ auto normal_order_o_replace(auto &counter_o,std::string word,std::vector <std::s
     return word;
 
 }
-auto normal_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
-    /*!
+     /*!
      функция, заменяющая все a в строке на @
+     * @param counter_a - количество букв a в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
      */
+auto normal_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
+    
     if (counter_a == 1) {
 
         pass_array.push_back(word.replace(word.find('a'), 1, "@"));
@@ -116,10 +133,14 @@ auto normal_order_a_replace(auto &counter_a,std::string word,std::vector <std::s
     }
     return word;
 }
-auto normal_order_f_replace(auto &counter_f,std::string word,std::vector <std::string> &pass_array) {
-    /*!
+     /*!
      функция, заменяющая все f в строке на 4
+     * @param counter_f - количество букв f в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
      */
+auto normal_order_f_replace(auto &counter_f,std::string word,std::vector <std::string> &pass_array) {
+   
     if (counter_f == 1) {
         pass_array.push_back(word.replace(word.find('f'), 1, "4"));
     }
@@ -132,10 +153,14 @@ auto normal_order_f_replace(auto &counter_f,std::string word,std::vector <std::s
     return word;
 
 }
-auto normal_order_e_replace(auto &counter_e,std::string word,std::vector <std::string> &pass_array) {
-    /*!
+     /*!
      функция, заменяющая все e в строке на 3
+     * @param counter_e - количество букв e в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
      */
+auto normal_order_e_replace(auto &counter_e,std::string word,std::vector <std::string> &pass_array) {
+   
     if (counter_e == 1) {
         pass_array.push_back(word.replace(word.find('e'), 1, "3"));
     }
@@ -147,11 +172,14 @@ auto normal_order_e_replace(auto &counter_e,std::string word,std::vector <std::s
     }
     return word;
 }
-
-auto normal_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
-    /*!
+     /*!
      функция, заменяющая все $ в строке на 5
+     * @param counter_s - количество букв $ в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
      */
+auto normal_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
+    
     if (counter_s == 1) {
 
         pass_array.push_back(word.replace(word.find('$'), 1, "5"));
@@ -163,11 +191,13 @@ auto normal_order_s2_replace(auto &counter_s,std::string word,std::vector <std::
     }
     return word;
 }
-
-auto normal_order_i2_replace(auto &counter_i,std::string word,std::vector <std::string> &pass_array) {
     /*!
      функция, заменяющая все 1 в строке на !
+     * @param counter_i - количество букв 1 в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
      */
+auto normal_order_i2_replace(auto &counter_i,std::string word,std::vector <std::string> &pass_array) {
     if (counter_i == 1) {
 
         pass_array.push_back(word.replace(word.find('1'), 1, "!"));
@@ -179,11 +209,13 @@ auto normal_order_i2_replace(auto &counter_i,std::string word,std::vector <std::
     }
     return word;
 }
-
-auto reverse_order_s1_replace(int counter_s,std::string word,std::vector <std::string> &pass_array) {
-    /*!
+     /*!
      функция, заменяющая все s в строке на $ в обратном порядке
+     * @param counter_s - количество букв s в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
      */
+auto reverse_order_s1_replace(int counter_s,std::string word,std::vector <std::string> &pass_array) {
 
     if (counter_s == 1) {
         std::reverse(word.begin(),word.end());
@@ -203,11 +235,15 @@ auto reverse_order_s1_replace(int counter_s,std::string word,std::vector <std::s
     return word;
 }
 
+     /*!
+     функция, заменяющая все i в строке на 1 в обратном порядке
+     * @param counter_i - количество букв i в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
+     */
 
 auto reverse_order_i1_replace(int counter_i,std::string word,std::vector <std::string> &pass_array) {
-    /*!
-    функция, заменяющая все i в строке на 1 в обратном порядке
-    */
+   
     if (counter_i == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('i'), 1, "1");
@@ -225,11 +261,13 @@ auto reverse_order_i1_replace(int counter_i,std::string word,std::vector <std::s
     }
     return word;
 }
-
+      /*!
+     функция, заменяющая все o в строке на 0 в обратном порядке
+     * @param counter_o - количество букв o в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
+     */
 auto reverse_order_o_replace(auto  &counter_o,std::string word,std::vector <std::string> &pass_array) {
-    /*!
-    функция, заменяющая все o в строке на 0 в обратном порядке
-    */
     if (counter_o == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('o'), 1, "0");
@@ -247,10 +285,14 @@ auto reverse_order_o_replace(auto  &counter_o,std::string word,std::vector <std:
     }
     return word;
 }
-auto reverse_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
     /*!
-    функция, заменяющая все a в строке на @ в обратном порядке
-    */
+     функция, заменяющая все a в строке на @ в обратном порядке
+     * @param counter_a - количество букв a в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
+     */
+auto reverse_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
+   
     if (counter_a == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('a'), 1, "@");
@@ -271,10 +313,14 @@ auto reverse_order_a_replace(auto &counter_a,std::string word,std::vector <std::
     return word;
 
 }
-auto reverse_order_f_replace(auto  &counter_f,std::string word,std::vector <std::string> &pass_array) {
     /*!
-    функция, заменяющая все f в строке на 4 в обратном порядке
-    */
+     функция, заменяющая все f в строке на 4 в обратном порядке
+     * @param counter_f - количество букв f в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
+     */
+auto reverse_order_f_replace(auto  &counter_f,std::string word,std::vector <std::string> &pass_array) {
+    
     if (counter_f == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('f'), 1, "4");
@@ -294,10 +340,14 @@ auto reverse_order_f_replace(auto  &counter_f,std::string word,std::vector <std:
 
     return word;
 }
+     /*!
+     функция, заменяющая все e в строке на 3 в обратном порядке
+     * @param counter_e - количество букв e в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
+     */
 auto reverse_order_e_replace(auto &counter_e,std::string word,std::vector <std::string> &pass_array) {
-    /*!
-    функция, заменяющая все e в строке на 3 в обратном порядке
-    */
+    
     if (counter_e == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('e'), 1, "3");
@@ -317,11 +367,14 @@ auto reverse_order_e_replace(auto &counter_e,std::string word,std::vector <std::
 
     return word;
 }
-
-auto reverse_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
     /*!
-    функция, заменяющая все $ в строке на 5 в обратном порядке
-    */
+     функция, заменяющая все $ в строке на 5 в обратном порядке
+     * @param counter_s - количество букв $ в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
+     */
+auto reverse_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
+   
     if (counter_s == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('$'), 1, "5");
@@ -340,11 +393,14 @@ auto reverse_order_s2_replace(auto &counter_s,std::string word,std::vector <std:
     }
     return word;
 }
-
+     /*!
+     функция, заменяющая все 1 в строке на ! в обратном порядке
+     * @param counter_i - количество букв 1 в пароле
+     * @param pass_array - массив с создаными паролями
+     * @param word - изменяемое слово которое ввел пользователь 
+     */
 auto reverse_order_i2_replace(auto  &counter_i,std::string word,std::vector <std::string> &pass_array) {
-    /*!
-    функция, заменяющая все 1 в строке на ! в обратном порядке
-    */
+    
     if (counter_i == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('1'), 1, "!");
