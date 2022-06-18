@@ -25,11 +25,18 @@ TEST_CASE ("Checking replace in normal order") {
             auto counter_s = 1;
             auto str = std::string ("iosafe");
             auto vec = std::vector <std::string> ({"1"});
-            REQUIRE(normal_order_s1_replace(counter_s,str,vec) == std::string("1osafe"));
-            //REQUIRE(normal_order_s1_replace(counter_s, word, pass_array) == "io$afe");
+            REQUIRE(normal_order_s1_replace(counter_s,str,vec) == std::string("io$afe"));
+            REQUIRE(normal_order_i1_replace(counter_i, str, vec) == std::string("1osafe"));
 }
 
-
+TEST_CASE ("Checking replace in reverse order") {
+            auto counter_i = 2;
+            auto counter_s = 2;
+            auto str = std::string ("asisoi");
+            auto vec = std::vector <std::string> ({"1"});
+            REQUIRE(reverse_order_s1_replace(counter_s,str,vec) == std::string("asi$oi"));
+            REQUIRE(reverse_order_i1_replace(counter_i, str, vec) == std::string("asiso1"));
+}
 
 
 

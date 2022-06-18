@@ -48,7 +48,7 @@ auto generator_txt(int pass_leng) {
     }
 }
 
-auto normal_order_s1_replace(auto counter_s,std::string word,std::vector <std::string> &pass_array) -> std::string {
+auto normal_order_s1_replace(int counter_s,std::string word,std::vector <std::string> &pass_array)  {
 
     /*!
      функция, заменяющая все s в строке на $
@@ -180,7 +180,7 @@ auto normal_order_i2_replace(auto &counter_i,std::string word,std::vector <std::
     return word;
 }
 
-auto reverse_order_s1_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
+auto reverse_order_s1_replace(int counter_s,std::string word,std::vector <std::string> &pass_array) {
     /*!
      функция, заменяющая все s в строке на $ в обратном порядке
      */
@@ -203,7 +203,7 @@ auto reverse_order_s1_replace(auto &counter_s,std::string word,std::vector <std:
     return word;
 }
 
-auto reverse_order_i1_replace(auto  &counter_i,std::string word,std::vector <std::string> &pass_array) {
+auto reverse_order_i1_replace(int counter_i,std::string word,std::vector <std::string> &pass_array) {
     /*!
     функция, заменяющая все i в строке на 1 в обратном порядке
     */
