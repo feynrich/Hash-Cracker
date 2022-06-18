@@ -3,7 +3,7 @@
 #include<string>
 #include<vector>
 #include<iostream>
-      /**
+      /*!
       Циклический сдвиг вправо
       * @param множ-во бинарных чисел и n - число инициализатор
      */
@@ -16,7 +16,7 @@ std::bitset<32> ROTRIGHT(std::bitset<32> &x, int n) {
     }
     return x;
 }
-    /**
+    /*!
       Логическая операция исключающая "или"
       * @param множ-во бинарных чисел
      */
@@ -24,7 +24,7 @@ std::bitset<32> XOR(std::bitset<32> x, std::bitset<32> y) {
     
     return x ^ y;
 }
-    /**
+    /*!
       Возвращает рез-тат побитового сложения
       * @param множ-во бинарных чисел
      */
@@ -34,7 +34,7 @@ std::bitset<32> MERGE(std::bitset<32> x, std::bitset<32> y) {
     std::bitset<32> sum(sum0);
     return sum;
 }
-    /**
+    /*!
       Преобразование строки в битовую послед-ть
       * @param message - строка которую изменяют
      */
@@ -76,7 +76,7 @@ std::vector<std::bitset<32>> H_vector = {0x6a09e667,
 };
 
 
-    /**
+    /*!
       Функция которая выравнивает битовый поток
       * @param input - строка которую изменяют
      */
@@ -102,7 +102,7 @@ auto tobinsubseq(std::string &input) {
 
     return binout;
 }
-    /**
+    /*!
      Генерация дополнительных слов для хэша
      * @param message - множ-во битов
     */
@@ -142,7 +142,7 @@ auto extrawords(std::bitset<512> &message) {
 
     return messagesset;
 }
-    /**
+    /*!
      Инициализация вспомогательных элементов
      * @param множ-во битовых последовательностей
      */
@@ -172,7 +172,7 @@ auto initsupvar(std::vector<std::bitset<32>> &H, std::vector<std::bitset<32>> co
 
     return SUP;
 }
-    /**
+    /*!
      Создание бинарного хэша
      * @param - pass - строка для создания хэша
      */
@@ -214,7 +214,7 @@ auto makebinaryhash(std::string &pass) {
 
     return hashedblock;
 }
-    /**
+    /*!
      Возвращает из блоков созданную отхэшированную строку
      * @param binhash - массив чисел
     */
@@ -233,7 +233,7 @@ auto outputhash(std::vector<std::bitset<32>> &binhash) {
     }
     return outputhash;
 }
-    /**
+    /*!
      Возвращает итоговый хэш
      * @param pass - итоговая строка
      */ 
