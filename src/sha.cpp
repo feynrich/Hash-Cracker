@@ -7,7 +7,7 @@
       Циклический сдвиг вправо
       * @param множ-во бинарных чисел и n - число инициализатор
      */
-std::bitset<32> ROTRIGHT(std::bitset<32> x, int n) {
+std::bitset<32> ROTRIGHT(std::bitset<32> &x, int n) {
     
     for (int i = 0; i < n; i++) {
         int bit = x[0];
@@ -38,7 +38,7 @@ std::bitset<32> MERGE(std::bitset<32> x, std::bitset<32> y) {
       Преобразование строки в битовую послед-ть
       * @param message - строка которую изменяют
      */
-std::string strtobin(std::string message) {
+std::string strtobin(std::string &message) {
     
     std::string binstr;
 
@@ -118,7 +118,7 @@ auto extrawords(std::bitset<512> &message) {
      Инициализация вспомогательных элементов
      * @param множ-во битовых последовательностей
      */
-auto initsupvar(std::vector<std::bitset<32>> H, std::vector<std::bitset<32>> sqhash, std::vector<std::bitset<32>> word_64) {
+auto initsupvar(std::vector<std::bitset<32>> &H, std::vector<std::bitset<32>> const&sqhash, std::vector<std::bitset<32>> &word_64) {
     
 
     std::bitset<32> T1;
@@ -148,7 +148,7 @@ auto initsupvar(std::vector<std::bitset<32>> H, std::vector<std::bitset<32>> sqh
      Создание бинарного хэша
      * @param - pass - строка для создания хэша
      */
-auto makebinaryhash(std::string pass) {
+auto makebinaryhash(std::string &pass) {
     
 
     std::vector<std::bitset<32>> H_vector = {0x6a09e667,
@@ -219,7 +219,7 @@ auto makebinaryhash(std::string pass) {
      Возвращает из блоков созданную отхэшированную строку
      * @param binhash - массив чисел
     */
-auto outputhash(std::vector<std::bitset<32>> binhash) {
+auto outputhash(std::vector<std::bitset<32>> &binhash) {
     
 
     std::string outputhash = "";
@@ -239,8 +239,8 @@ auto outputhash(std::vector<std::bitset<32>> binhash) {
      * @param pass - итоговая строка
      */ 
 auto sha256(std::string pass) {
-    
-    return outputhash(makebinaryhash(pass));;
+    std::vector<std::bitset<32>> subhash = makebinaryhash(pass);
+    return outputhash(subhash);
 }
 
 
