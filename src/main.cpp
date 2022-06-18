@@ -8,7 +8,6 @@
 #define UNICODE
 
 #include <windows.h>
-#include <conio.h>
 
 std::string hashfunc(std::string pass, int func) {
     /*
@@ -22,7 +21,7 @@ std::string hashfunc(std::string pass, int func) {
             return md5(pass) ;
     }
 
-    return 0;
+    return nullptr;
 
 }
 
@@ -100,29 +99,23 @@ int main() {
             std::cout << "Choose hash-function:" << std::endl;
             std::cout << "1 - SHA256" << std::endl;
             std::cout << "2 - MD5" << std::endl;
-
             std::cin >> func;
-
             std::cout << "Enter hash:" << std::endl;
-
             std::cin >> hashes;
-
             std::cout << "Choose crack mode:" << std::endl;
             std::cout << "1 - Wordlist" << std::endl;
             std::cout << "2 - Enumeration of numbers" << std::endl;
-
             std::cin >> mode;
-
             if (mode == 1)
                 wordlist(hashes, func);
-
             else if (mode == 2)
                 numlist(hashes, func);
+            break;
         }
         case 2:
-          main_generator();
+            main_generator();
+            break;
+
     }
     return 0;
 }
-
-

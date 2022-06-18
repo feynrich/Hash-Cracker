@@ -19,25 +19,22 @@ std::string alphabet[62] = {"A", "B", "C", "D", "E", "F", "G", "H", "I",
 
 auto generator_txt(int pass_leng) {
     std::string string_in_txt;
-    long long int max_pass;
-    long long int txt_size;
     std::string answer;
-    srand(time(NULL));
-    FILE *file = fopen("..\\dic\\rand_pass.txt", "w");
-    max_pass = pow(62, pass_leng);
-    txt_size = (pass_leng + 2) * max_pass;
+    srand(time(nullptr));
+    auto max_pass = pow(62, pass_leng);
+    auto txt_size = (pass_leng + 2) * max_pass;
     std::cout << "Number of passwords: " << max_pass << "\n";
     std::cout << "Size of text file: " << txt_size << " byte" << "\n";
     std::cout << "proceed?[yes]: ";
     std::cin >> answer;
     if (answer == "yes") {
+        FILE *file = fopen("..//dic//rand_pass.txt", "w+");
         for (unsigned int i = 0; i < max_pass; i++) {
-            for (unsigned int i = 0; i < pass_leng; i++) {
+            for (unsigned int j = 0; j < pass_leng; j++) {
                 string_in_txt += (alphabet[rand() % 62]);
             }
-            char char_pass[pass_leng];
-            strcpy(char_pass, string_in_txt.c_str());
-            bool res = fputs(char_pass, file);
+            const char * char_pass = string_in_txt.data();
+            fputs(char_pass,file);
             fputs("\n", file);
             string_in_txt = "";
 
@@ -49,352 +46,362 @@ auto generator_txt(int pass_leng) {
     }
 }
 
+auto normal_order_s1_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
+    if (counter_s == 1) {
+
+        pass_array.push_back(word.replace(word.find('s'), 1, "$"));
+    }
+
+    if (counter_s > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 's') + 1; i++) {
+            pass_array.push_back(word.replace(word.find('s'), 1, "$"));
+        }
+    }
+    return word;
+
+}
+
+auto normal_order_i1_replace(auto &counter_i,std::string word,std::vector <std::string> &pass_array) {
+
+    if (counter_i == 1) {
+        pass_array.push_back(word.replace(word.find('i'), 1, "1"));
+    }
+
+    if (counter_i > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'i') + 1; i++) {
+            pass_array.push_back(word.replace(word.find('i'), 1, "1"));
+        }
+    }
+    return word;
+
+}
+
+auto normal_order_o_replace(auto &counter_o,std::string word,std::vector <std::string> &pass_array) {
+
+    if (counter_o == 1) {
+        pass_array.push_back(word.replace(word.find('o'), 1, "0"));
+    }
+    if (counter_o > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'o') + 1; i++) {
+
+            pass_array.push_back(word.replace(word.find('o'), 1, "0"));
+        }
+    }
+    return word;
+
+}
+auto normal_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
+
+    if (counter_a == 1) {
+
+        pass_array.push_back(word.replace(word.find('a'), 1, "@"));
+    }
+
+    if (counter_a > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'a') + 1; i++) {
+            pass_array.push_back(word.replace(word.find('a'), 1, "@"));
+        }
+    }
+    return word;
+}
+auto normal_order_f_replace(auto &counter_f,std::string word,std::vector <std::string> &pass_array) {
+
+    if (counter_f == 1) {
+        pass_array.push_back(word.replace(word.find('f'), 1, "4"));
+    }
+    if (counter_f > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'f') + 1; i++) {
+
+            pass_array.push_back(word.replace(word.find('f'), 1, "4"));
+        }
+    }
+    return word;
+
+}
+auto normal_order_e_replace(auto &counter_e,std::string word,std::vector <std::string> &pass_array) {
+
+    if (counter_e == 1) {
+        pass_array.push_back(word.replace(word.find('e'), 1, "3"));
+    }
+
+    if (counter_e > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'e') + 1; i++) {
+            pass_array.push_back(word.replace(word.find('e'), 1, "3"));
+        }
+    }
+    return word;
+}
+
+auto normal_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
+    if (counter_s == 1) {
+
+        pass_array.push_back(word.replace(word.find('$'), 1, "5"));
+    }
+    if (counter_s > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), '$') + 1; i++) {
+            pass_array.push_back(word.replace(word.find('$'), 1, "5"));
+        }
+    }
+    return word;
+}
+
+auto normal_order_i2_replace(auto &counter_i,std::string word,std::vector <std::string> &pass_array) {
+
+    if (counter_i == 1) {
+
+        pass_array.push_back(word.replace(word.find('1'), 1, "!"));
+    }
+    if (counter_i > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), '1') + 1; i++) {
+            pass_array.push_back(word.replace(word.find('1'), 1, "!"));
+        }
+    }
+    return word;
+}
+
+auto reverse_order_s1_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
+
+
+    if (counter_s == 1) {
+        std::reverse(word.begin(),word.end());
+        word = word.replace(word.find('s'), 1, "$");
+        std::reverse(word.begin(),word.end());
+        pass_array.push_back(word);
+    }
+
+    if (counter_s > 1) {
+        for (unsigned int i = word.size(); i <= std::count(word.begin(), word.end(), 's') + 1; i++) {
+            std::reverse(word.begin(),word.end());
+            word = word.replace(word.find('s'), 1, "$");
+            std::reverse(word.begin(),word.end());
+            pass_array.push_back(word);
+        }
+    }
+    return word;
+}
+
+auto reverse_order_i1_replace(auto  &counter_i,std::string word,std::vector <std::string> &pass_array) {
+    if (counter_i == 1) {
+        std::reverse(word.begin(),word.end());
+        word = word.replace(word.find('i'), 1, "1");
+        std::reverse(word.begin(),word.end());
+        pass_array.push_back(word);
+    }
+
+    if (counter_i > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'i') + 1; i++) {
+            std::reverse(word.begin(),word.end());
+            word = word.replace(word.find('i'), 1, "1");
+            std::reverse(word.begin(),word.end());
+            pass_array.push_back(word);
+        }
+    }
+    return word;
+}
+
+auto reverse_order_o_replace(auto  &counter_o,std::string word,std::vector <std::string> &pass_array) {
+
+    if (counter_o == 1) {
+        std::reverse(word.begin(),word.end());
+        word = word.replace(word.find('o'), 1, "0");
+        std::reverse(word.begin(),word.end());
+        pass_array.push_back(word);
+    }
+
+    if (counter_o > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'o') + 1; i++) {
+            std::reverse(word.begin(),word.end());
+            word = word.replace(word.find('o'), 1, "0");
+            std::reverse(word.begin(),word.end());
+            pass_array.push_back(word);
+        }
+    }
+    return word;
+}
+auto reverse_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
+
+    if (counter_a == 1) {
+        std::reverse(word.begin(),word.end());
+        word = word.replace(word.find('a'), 1, "@");
+        std::reverse(word.begin(),word.end());
+        pass_array.push_back(word);
+
+    }
+
+    if (counter_a > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'a') + 1; i++) {
+            std::reverse(word.begin(),word.end());
+            word = word.replace(word.find('a'), 1, "@");
+            std::reverse(word.begin(),word.end());
+            pass_array.push_back(word);
+        }
+    }
+
+    return word;
+
+}
+auto reverse_order_f_replace(auto  &counter_f,std::string word,std::vector <std::string> &pass_array) {
+
+    if (counter_f == 1) {
+        std::reverse(word.begin(),word.end());
+        word = word.replace(word.find('f'), 1, "4");
+        std::reverse(word.begin(),word.end());
+        pass_array.push_back(word);
+
+    }
+
+    if (counter_f > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'f') + 1; i++) {
+            std::reverse(word.begin(),word.end());
+            word = word.replace(word.find('f'), 1, "4");
+            std::reverse(word.begin(),word.end());
+            pass_array.push_back(word);
+        }
+    }
+
+    return word;
+}
+auto reverse_order_e_replace(auto &counter_e,std::string word,std::vector <std::string> &pass_array) {
+
+    if (counter_e == 1) {
+        std::reverse(word.begin(),word.end());
+        word = word.replace(word.find('e'), 1, "3");
+        std::reverse(word.begin(),word.end());
+        pass_array.push_back(word);
+
+    }
+
+    if (counter_e > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'e') + 1; i++) {
+            std::reverse(word.begin(),word.end());
+            word = word.replace(word.find('e'), 1, "3");
+            std::reverse(word.begin(),word.end());
+            pass_array.push_back(word);
+        }
+    }
+
+    return word;
+}
+
+auto reverse_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
+    if (counter_s == 1) {
+        std::reverse(word.begin(),word.end());
+        word = word.replace(word.find('$'), 1, "5");
+        std::reverse(word.begin(),word.end());
+        pass_array.push_back(word);
+
+    }
+
+    if (counter_s > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), '$') + 1; i++) {
+            std::reverse(word.begin(),word.end());
+            word = word.replace(word.find('$'), 1, "5");
+            std::reverse(word.begin(),word.end());
+            pass_array.push_back(word);
+        }
+    }
+    return word;
+}
+
+auto reverse_order_i2_replace(auto  &counter_i,std::string word,std::vector <std::string> &pass_array) {
+
+    if (counter_i == 1) {
+        std::reverse(word.begin(),word.end());
+        word = word.replace(word.find('1'), 1, "!");
+        std::reverse(word.begin(),word.end());
+        pass_array.push_back(word);
+
+    }
+    if (counter_i > 1) {
+        for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), '1') + 1; i++) {
+            std::reverse(word.begin(),word.end());
+            word = word.replace(word.find('1'), 1, "!");
+            std::reverse(word.begin(),word.end());
+            pass_array.push_back(word);
+        }
+    }
+    return word;
+
+}
+
+
 //replace in normal order
 
 auto by_word_generator_normal_order(int amount_of_words, std::string *word_array) {
 
     std::string word;
     std::string word_2;
-    std::string word_o;// 0
-    std::string word_i;// 1
-    std::string word_i_2;// !
-    std::string word_s;// $
-    std::string word_s_2;// 5
-    std::string word_a;// @
-    std::string word_f;// 4
-    std::string word_e;// 3
     std::vector<std::string> pass_array;
+    for (unsigned int i = 0; i < amount_of_words; i++) {
 
-
-    for (unsigned int i = 0; i <= amount_of_words; i++) {
         word = word_array[i];
-        int counter_o = std::count(word.begin(), word.end(), 'o');
-        int counter_i = std::count(word.begin(), word.end(), 'i');
-        int counter_s = std::count(word.begin(), word.end(), 's');
-        int counter_a = std::count(word.begin(), word.end(), 'a');
-        int counter_f = std::count(word.begin(), word.end(), 'f');
-        int counter_e = std::count(word.begin(), word.end(), 'e');
 
-        //replace s on $
+        auto counter_o = std::count(word.begin(), word.end(), 'o');
+        auto counter_i = std::count(word.begin(), word.end(), 'i');
+        auto counter_s = std::count(word.begin(), word.end(), 's');
+        auto counter_a = std::count(word.begin(), word.end(), 'a');
+        auto counter_f = std::count(word.begin(), word.end(), 'f');
+        auto counter_e = std::count(word.begin(), word.end(), 'e');
 
-        if (counter_s == 1) {
-            word_s = word.replace(word.find("s"), 1, "$");
-            //std::cout << word_s << "\n";
-            pass_array.push_back(word_s);
-        }
-        if (counter_s > 1) {
-            for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 's') + 1; i++) {
-                word_s = word.replace(word.find("s"), 1, "$");
-                //std::cout << word_s << "\n";
-                pass_array.push_back(word_s);
-            }
-        }
-
-        //replace i on 1
-
-        if (counter_i == 1) {
-            word_i = word.replace(word.find("i"), 1, "1");
-            //std::cout << word_i << "\n";
-            pass_array.push_back(word_i);
-        }
-        if (counter_i > 1) {
-            for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'i') + 1; i++) {
-                word_i = word.replace(word.find("i"), 1, "1");
-                //std::cout << word_i << "\n";
-                pass_array.push_back(word_i);
-            }
-
-        }
-
-        //replace o on 0
-
-        if (counter_o == 1) {
-            word_o = word.replace(word.find("o"), 1, "0");
-            //std::cout << word_o << "\n";
-            pass_array.push_back(word_o);
-        }
-        if (counter_o > 1) {
-            for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'o') + 1; i++) {
-                word_o = word.replace(word.find("o"), 1, "0");
-                //std::cout << word_o << "\n";
-                pass_array.push_back(word_o);
-            }
-        }
-
-        //replace a on @
-
-        if (counter_a == 1) {
-            word_a = word.replace(word.find("a"), 1, "@");
-            //std::cout << word_a << "\n";
-            pass_array.push_back(word_a);
-        }
-        if (counter_a > 1) {
-            for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'a') + 1; i++) {
-                word_a = word.replace(word.find("a"), 1, "@");
-                //std::cout << word_a << "\n";
-                pass_array.push_back(word_a);
-            }
-        }
-
-        //replace f on 4
-
-        if (counter_f == 1) {
-            word_f = word.replace(word.find("f"), 1, "4");
-            //std::cout << word_f << "\n";
-            pass_array.push_back(word_f);
-        }
-        if (counter_f > 1) {
-            for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'f') + 1; i++) {
-                word_f = word.replace(word.find("f"), 1, "4");
-                //std::cout << word_f << "\n";
-                pass_array.push_back(word_f);
-            }
-        }
-
-        //replace e on 3
-
-        if (counter_e == 1) {
-            word_e = word.replace(word.find("e"), 1, "3");
-            //std::cout << word_e << "\n";
-            pass_array.push_back(word_e);
-        }
-        if (counter_e > 1) {
-            for (unsigned int i = 0; i <= std::count(word.begin(), word.end(), 'e') + 1; i++) {
-                word_e = word.replace(word.find("e"), 1, "3");
-                //std::cout << word_e << "\n";
-                pass_array.push_back(word_e);
-            }
-        }
-
-        //replace s on 5
+        word = normal_order_s1_replace(counter_s, word, pass_array);
+        word = normal_order_i1_replace(counter_i, word, pass_array);
+        word = normal_order_o_replace(counter_o, word, pass_array);
+        word = normal_order_a_replace(counter_a, word, pass_array);
+        word = normal_order_f_replace(counter_f, word, pass_array);
+        word = normal_order_e_replace(counter_e, word, pass_array);
 
         word_2 = word;
-        if (counter_s == 1) {
 
-            word_s_2 = word_2.replace(word_2.find("$"), 1, "5");
-            //std::cout << word_s_2 << "\n";
-            pass_array.push_back(word_s_2);
-        }
-        if (counter_s > 1) {
-            for (unsigned int i = 0; i <= std::count(word_2.begin(), word_2.end(), '$') + 1; i++) {
-
-                word_s_2 = word_2.replace(word_2.find("$"), 1, "5");
-                //std::cout << word_s_2 << "\n";
-                pass_array.push_back(word_s_2);
-            }
-        }
-
-        //replace 1 on !
-
-        if (counter_i == 1) {
-            word_i_2 = word_2.replace(word_2.find("1"), 1, "!");
-            //std::cout << word_i_2 << "\n";
-            pass_array.push_back(word_i_2);
-        }
-        if (counter_i > 1) {
-            for (unsigned int i = 0; i <= std::count(word_2.begin(), word_2.end(), '1') + 1; i++) {
-                word_i_2 = word_2.replace(word_2.find("1"), 1, "!");
-                //std::cout << word_i_2 << "\n";
-                pass_array.push_back(word_i_2);
-            }
-        }
+        word_2 = normal_order_s2_replace(counter_s,word_2, pass_array);
+        word_2 = normal_order_i2_replace(counter_i,word_2, pass_array);
     }
 
     return pass_array;
+
 }
+
+
 
 //replace in reverse order
 
-auto by_word_generator_reverse_order(int amount_of_words, std::string *word_array) {
+auto by_word_generator_reverse_order(int amount_of_words, std::string  *word_array) {
 
     std::string word;
     std::string word_2;
-    std::string word_o;// 0
-    std::string word_i;// 1
-    std::string word_i_2;// !
-    std::string word_s;// $
-    std::string word_s_2;// 5
-    std::string word_a;// @
-    std::string word_f;// 4
-    std::string word_e;// 3
-    std::vector<std::string> pass_array1;
+    std::vector <std::string> pass_array1;
 
-    for (unsigned int i = 0; i <= amount_of_words; i++) {
+
+    for (unsigned int i = 0; i < amount_of_words; i++) {
 
         word = word_array[i];
-        std::reverse(word.begin(), word.end());
 
-        int counter_o = std::count(word.begin(), word.end(), 'o');
-        int counter_i = std::count(word.begin(), word.end(), 'i');
-        int counter_s = std::count(word.begin(), word.end(), 's');
-        int counter_a = std::count(word.begin(), word.end(), 'a');
-        int counter_f = std::count(word.begin(), word.end(), 'f');
-        int counter_e = std::count(word.begin(), word.end(), 'e');
+        auto counter_o = std::count(word.begin(), word.end(), 'o');
+        auto counter_i = std::count(word.begin(), word.end(), 'i');
+        auto counter_s = std::count(word.begin(), word.end(), 's');
+        auto counter_a = std::count(word.begin(), word.end(), 'a');
+        auto counter_f = std::count(word.begin(), word.end(), 'f');
+        auto counter_e = std::count(word.begin(), word.end(), 'e');
 
-        //replace s on $
-
-        if (counter_s == 1) {
-
-            word_s = word.replace(word.find("s"), 1, "$");
-            std::reverse(word_s.begin(), word_s.end());
-            //std::cout << word_s << "\n";
-            pass_array1.push_back(word_s);
-        }
-        if (counter_s > 1) {
-            for (unsigned int i = 0; i < std::count(word.begin(), word.end(), 's') + 1; i++) {
-
-                word_s = word.replace(word.find("s"), 1, "$");
-                std::reverse(word_s.begin(), word_s.end());
-                //std::cout << word_s << "\n";
-                pass_array1.push_back(word_s);
-
-            }
-        }
-
-        //replace i on 1
-
-        if (counter_i == 1) {
-            word_i = word.replace(word.find("i"), 1, "1");
-            std::reverse(word_i.begin(), word_i.end());
-            //std::cout << word_i << "\n";
-            pass_array1.push_back(word_i);
-
-        }
-        if (counter_i > 1) {
-            for (unsigned int i = 0; i < std::count(word.begin(), word.end(), 'i') + 1; i++) {
-                word_i = word.replace(word.find("i"), 1, "1");
-                std::reverse(word_i.begin(), word_i.end());
-                //std::cout << word_i << "\n";
-                pass_array1.push_back(word_i);
-            }
-
-        }
-
-        //replace a on @
-
-        if (counter_a == 1) {
-
-            word_a = word.replace(word.find("a"), 1, "@");
-            std::reverse(word_a.begin(), word_a.end());
-            //std::cout << word_a << "\n";
-            pass_array1.push_back(word_a);
-        }
-        if (counter_a > 1) {
-            for (unsigned int i = 0; i < std::count(word.begin(), word.end(), 'a') + 1; i++) {
-                word_a = word.replace(word.find("a"), 1, "@");
-                std::reverse(word_a.begin(), word_a.end());
-                //std::cout << word_a << "\n";
-                pass_array1.push_back(word_a);
-            }
-        }
-
-        //replace o on 0
-
-        if (counter_o == 1) {
-
-            word_o = word.replace(word.find("o"), 1, "0");
-            std::reverse(word_o.begin(), word_o.end());
-            //std::cout << word_o << "\n";
-            pass_array1.push_back(word_o);
-        }
-        if (counter_o > 1) {
-            for (unsigned int i = 0; i < std::count(word.begin(), word.end(), 'o') + 1; i++) {
-
-                word_o = word.replace(word.find("o"), 1, "0");
-                std::reverse(word_o.begin(), word_o.end());
-                //std::cout << word_o << "\n";
-                pass_array1.push_back(word_o);
-            }
-        }
-
-        //replace e on 3
-
-        if (counter_e == 1) {
-
-            word_e = word.replace(word.find("e"), 1, "3");
-            std::reverse(word_e.begin(), word_e.end());
-            //std::cout << word_e << "\n";
-            pass_array1.push_back(word_e);
-        }
-        if (counter_e > 1) {
-            for (unsigned int i = 0; i < std::count(word.begin(), word.end(), 'e') + 1; i++) {
-
-                word_e = word.replace(word.find("e"), 1, "3");
-                std::reverse(word_e.begin(), word_e.end());
-                //std::cout << word_e << "\n";
-                pass_array1.push_back(word_e);
-            }
-        }
-
-        //replace f on 4
-
-        if (counter_f == 1) {
-
-            word_f = word.replace(word.find("f"), 1, "4");
-            std::reverse(word_f.begin(), word_f.end());
-            //std::cout << word_f << "\n";
-            pass_array1.push_back(word_f);
-        }
-        if (counter_f > 1) {
-            for (unsigned int i = 0; i < std::count(word.begin(), word.end(), 'f') + 1; i++) {
-
-                word_f = word.replace(word.find("f"), 1, "4");
-                std::reverse(word_f.begin(), word_f.end());
-                //std::cout << word_f << "\n";
-                pass_array1.push_back(word_f);
-            }
-        }
-
-
-
-        //replace s on 5
+        word = reverse_order_s1_replace(counter_s, word, pass_array1);
+        word = reverse_order_i1_replace(counter_i, word, pass_array1);
+        word = reverse_order_o_replace(counter_o, word, pass_array1);
+        word = reverse_order_a_replace(counter_a, word, pass_array1);
+        word = reverse_order_f_replace(counter_f, word, pass_array1);
+        word = reverse_order_e_replace(counter_e, word, pass_array1);
 
         word_2 = word;
-        if (counter_s == 1) {
 
-            word_s_2 = word_2.replace(word_2.find("$"), 1, "5");
-            std::reverse(word_s_2.begin(), word_s_2.end());
-            //std::cout << word_s_2 << "\n";
-            pass_array1.push_back(word_s_2);
-        }
-        if (counter_s > 1) {
-            for (unsigned int i = 0; i < std::count(word_2.begin(), word_2.end(), '$') + 1; i++) {
+        word_2 = reverse_order_s2_replace(counter_s, word_2, pass_array1);
+        word_2 = reverse_order_i2_replace(counter_i, word_2, pass_array1);
 
-                word_s_2 = word_2.replace(word_2.find("$"), 1, "5");
-                std::reverse(word_s_2.begin(), word_s_2.end());
-                //std::cout << word_s_2 << "\n";
-                pass_array1.push_back(word_s_2);
-            }
-        }
-
-        //replace 1 on !
-
-        if (counter_i == 1) {
-
-            word_i_2 = word_2.replace(word_2.find("1"), 1, "!");
-            std::reverse(word_i_2.begin(), word_i_2.end());
-            //std::cout << word_i_2 << "\n";
-            pass_array1.push_back(word_i_2);
-        }
-        if (counter_i > 1) {
-            for (unsigned int i = 0; i < std::count(word_2.begin(), word_2.end(), '1') + 1; i++) {
-
-                word_i_2 = word_2.replace(word_2.find("1"), 1, "!");
-                std::reverse(word_i_2.begin(), word_i_2.end());
-                //std::cout << word_i_2 << "\n";
-                pass_array1.push_back(word_i_2);
-            }
-        }
     }
-
     return pass_array1;
 }
 
-auto combine(std::vector<std::string> pass_array, int amount_of_words) {
-    std::string s;
+auto combine(std::vector<std::string> pass_array) {
+    std::string str;
     std::ofstream out;
-    out.open("..\\dic\\word_pass.txt");
-    s = "";
+    FILE *file = fopen("..//dic//word_pass.txt", "w+");
     for (int i = 0; i <= pass_array.size(); i++) {
         if (pass_array[i].empty()) {
             pass_array.erase(pass_array.begin() + i);
@@ -409,18 +416,19 @@ auto combine(std::vector<std::string> pass_array, int amount_of_words) {
     }
 
     for (int i = 0; i < count; i++) {
-        for (int i = 0; i < count; i++) {
+        for (int j = 0; j < count; j++) {
 
-            s = pass_array[i];
-            pass_array[i] = pass_array[i + 1];
-            pass_array[i + 1] = s;
+            str = pass_array[j];
+            pass_array[j] = pass_array[j + 1];
+            pass_array[j + 1] = str;
         }
+        auto str = pass_array[0] + pass_array[1];
+        const char * char_pass = str.data();
+        fputs(char_pass,file);
+        fputs("\n", file);
 
-        s = pass_array[0] + pass_array[1];
-        out << s << std::endl;
-
-        s = "";
     }
+    fclose(file);
     std::cout << "Your file is ready!?";
     return 0;
 
@@ -431,7 +439,6 @@ int main_generator() {
     std::cout << "Choose type of password generation:"
                  "\n1 - random generation"
                  "\n2 - by word generation\n";
-
     std::cin >> choose;
     switch (choose) {
         case 1:
@@ -439,39 +446,65 @@ int main_generator() {
             std::cout << "Enter the amount of symbols in passwords:";
             std::cin >> pass_leng;
             generator_txt(pass_leng);
+            break;
         case 2:
             int amount_of_words;
             std::cout << "Enter the amount of words in passwords:";
             std::cin >> amount_of_words;
             std::string word_array[amount_of_words];
+            std::string str;
             for (unsigned int i = 0; i < amount_of_words; i++) {
                 std::cout << "enter your word(-s):\n";
-                std::cin >> word_array[i];
+                std::cin >> str;
+                word_array[i] = str;
             }
 
             std::vector<std::string> pass_array1 = by_word_generator_normal_order(amount_of_words, word_array);
+
             std::vector<std::string> pass_array2 = by_word_generator_reverse_order(amount_of_words, word_array);
+
             std::reverse(pass_array2.begin(), pass_array2.end());
             int n = int(pass_array1.size()) + int(pass_array2.size());
             std::vector<std::string> pass_array_sum(n);
+
             int a = 0;
             int b = 1;
-            if (amount_of_words > 1) {
+            for (int i = 0; i < pass_array1.size(); i++) {
+                pass_array_sum.insert(pass_array_sum.begin() + a, pass_array1[i]);
+                a = a + 2;
 
-                for (int i = 0; i < pass_array1.size(); i++) {
-                    pass_array_sum.insert(pass_array_sum.begin() + a, pass_array1[i]);
-                    a = a + 2;
-
-                }
-
-                for (int i = 0; i < pass_array2.size(); i++) {
-                    pass_array_sum.insert(pass_array_sum.begin() + b, pass_array2[i]);
-                    b = b + 2;
-                }
-                combine(pass_array_sum, amount_of_words);
             }
-    }
-    return 0;
+            for (int i = 0; i < pass_array2.size(); i++) {
+                pass_array_sum.insert(pass_array_sum.begin() + b, pass_array2[i]);
+                b = b + 2;
+            }
+            if (amount_of_words == 1){
+                for (int i = 0; i <= pass_array_sum.size(); i++) {
+                    if (pass_array_sum[i].empty()) {
+                        pass_array_sum.erase(pass_array_sum.begin() + i);
+                    }
+                }
+                int count = 0;
 
+
+                std::ofstream out;
+                FILE *file = fopen("..//dic//word_pass.txt", "w+");
+                for (int i = 0; i <= pass_array_sum.size(); i++){
+                    const char * char_pass = pass_array_sum[i].data();
+                    fputs(char_pass, file);
+                    fputs("\n", file);
+                }
+                fclose(file);
+                std::cout << "Your file is ready!?";
+            }
+            if(amount_of_words >  1){
+                combine(pass_array_sum);
+            }
+
+            break;
+
+    }
+
+    return 0;
 
 }
