@@ -47,6 +47,7 @@ std::string strtobin(std::string const&message) {
     }
     return binstr;
 }
+///кубические корни натуральных чисел
 const std::vector<std::bitset<32>> root_3 = {0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1,
                                              0x923f82a4, 0xab1c5ed5,
                                              0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe,
@@ -64,7 +65,7 @@ const std::vector<std::bitset<32>> root_3 = {0x428a2f98, 0x71374491, 0xb5c0fbcf,
                                              0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb,
                                              0xbef9a3f7, 0xc67178f2
 };
-
+///квадартные корни натуральных чисел
 std::vector<std::bitset<32>> H_vector = {0x6a09e667,
                                          0xbb67ae85,
                                          0x3c6ef372,
