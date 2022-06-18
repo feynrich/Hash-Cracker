@@ -7,27 +7,27 @@
     /**
     Множество функций Fun - функции проводящие операции над битовым потоком
     */
-std::bitset<32> FunG(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
+std::bitset<32> FunG(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
     return (x & z) | (~z & y);
 
 }
 
-std::bitset<32> FunF(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
+std::bitset<32> FunF(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
     return (x & y) | (~x & z);
 }
 
-std::bitset<32> FunH(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
+std::bitset<32> FunH(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
     return x ^ y ^ z;
 }
 
-std::bitset<32> FunI(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
+std::bitset<32> FunI(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
     return y ^ (x | ~z);
 }
     /**
       Циклический сдвиг влево
       * @param n - каунтер
     */
-std::bitset<32> ROTLEFT(std::bitset<32> x, int n) {
+std::bitset<32> ROTLEFT(std::bitset<32> &x, int n) {
      
     for (int i = 0; i < n; i++) {
         int bit = x[31];
@@ -80,7 +80,7 @@ const std::vector<int> s = {
       Функция которая производит запись битовой послед-ти в формате little endian
       * @param string - строка для изменения
     */
-auto make_little_endian(std::string input) {
+auto make_little_endian(std::string &input) {
    
     std::string litstr;
     for (auto i = input.length() / 8; i > 0; i--) {
@@ -124,8 +124,8 @@ auto tobinsubseq1(std::string &input) {
     for (int i = 1; i < input_pl_len + 1; i++) { //дополнение исходного сообщения нулями
         input_pl.insert(input_bin.length() + i, "0");
     }
-
-    input_pl += make_little_endian(std::bitset<64>(bin_len).to_string()); //добавление длины сообщения к исходному потоку
+    std::string len_bin = std::bitset<64>(bin_len).to_string();
+    input_pl += make_little_endian(len_bin); //добавление длины сообщения к исходному потоку
 
     std::vector<bool> binout;
 
@@ -209,7 +209,7 @@ auto makesubhash(std::string &input) {
       запись битовой послед-ти в формате little-endian по 2 бита
       * @param string - строка для записи
      */
-auto little_endian(std::string input) {
+auto little_endian(std::string &input) {
     
     std::string litstr;
     for (auto i = input.length() / 2; i > 0; i--) {
@@ -233,7 +233,8 @@ auto hash_little_endian(std::bitset<32> &buffer) {
         std::string hash_out0 = "0" + hash_out.str();
         hashdigest += little_endian(hash_out0);
     } else {
-        hashdigest += little_endian(hash_out.str());
+        std::string hash_out01 = hash_out.str();
+        hashdigest += little_endian(hash_out01);
     }
     return hashdigest;
 }
@@ -241,7 +242,7 @@ auto hash_little_endian(std::bitset<32> &buffer) {
       соединение хеша из 4-х блоков
       * @param массив бинарных чисел
      */
-auto hash1(std::vector<std::bitset<32>> buffer) {
+auto hash1(std::vector<std::bitset<32>> &buffer) {
   
     std::string hash_str;
     for (int i = 0; i < 4; i++) {
@@ -253,8 +254,8 @@ auto hash1(std::vector<std::bitset<32>> buffer) {
       вызов функции hash1 - то есть замыкание
       * @param string - строка на входе
      */
-auto md5(std::string input) {
-    
+auto md5(std::string &input) {
+    std::vector<std::bitset<32>> subhash = makesubhash(input);
 
-    return hash1(makesubhash(input));
+    return hash1(subhash);
 }
