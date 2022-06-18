@@ -29,9 +29,9 @@ TEST_CASE ("Checking SHA2 hash") {
     std::string str1 = "qwertyuiop123456";
     std::string str2 = "feynrich";
     std::string str3 = "hsepassword";
-            REQUIRE(sha256(str1) == "0485df2c3af8d7cf5c97cb73bf18dd00e78979c88d1488121e01000e36190667");
-            REQUIRE(sha256(str2) == "845f9b6b65366ce7aa6108353d082f5b22d799fac3cce77d54414d5027ab80ad");
-            REQUIRE(sha256(str3) == "fd532ebfec5043ab6ac1c5243dad93b27245dc0ccc2f72a4268f8d9eff6b9162");
+            REQUIRE(sha256(str1) == "e3f7c6cc5e7dd9f105f4bcd05e1477f108f0d17b0178e1221b1b09a2096dda4e");
+            REQUIRE(sha256(str2) == "cacb3a6e529cc578043ad5c7f43775539451d6d05855c01d9ec7b986a858131b");
+            REQUIRE(sha256(str3) == "10bf0ee577cd3cf3fa219024e22d67831708b332c99a5ad9f6aa070df73cf9d1");
 }
 
 TEST_CASE ("Checking string to binary") {
