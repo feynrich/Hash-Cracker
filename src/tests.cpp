@@ -1,5 +1,5 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-
+#include <bitset>
 #include "../external/doctest.h"
 #include "md5.h"
 #include "sha.h"
@@ -62,6 +62,8 @@ TEST_CASE ("Checking replace in reverse order") {
             REQUIRE(reverse_order_s1_replace(counter_s,str,vec) == std::string("asi$oi"));
             REQUIRE(reverse_order_i1_replace(counter_i, str, vec) == std::string("asiso1"));
 }
+
+
 
 
 

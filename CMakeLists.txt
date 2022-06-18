@@ -9,8 +9,8 @@ enable_testing()
 
 add_library(test_main OBJECT src/md5.cpp src/gen.cpp src/sha.cpp)
 
-add_executable(test1 tests.cpp $<TARGET_OBJECTS:test_main>)
-add_test(NAME test1 COMMAND test1)
+add_executable(tests_hash_cracker src/tests.cpp $<TARGET_OBJECTS:test_main>)
+add_test(NAME test_hash_cracker COMMAND test1)
 
 
 add_executable(proj src/main.cpp src/gen.h)

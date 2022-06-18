@@ -1,3 +1,2 @@
-//
-// Created by kroxi on 18.06.2022.
-//
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest.h"
