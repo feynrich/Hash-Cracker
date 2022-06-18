@@ -11,7 +11,7 @@
 
 std::string hashfunc(std::string pass, int func) {
     /*
-      Функция которая проблема хеширования
+      Функция вызывающая хэш-функцию
     */
     switch (func) {
         case 1:
@@ -36,7 +36,7 @@ auto wordlist(std::string hash, int func) {
 
     std::string s;
     std::string hashes;
-
+    //считывание строк из файла-словаря
     std::ifstream file(path + ".txt");
 
     while (std::getline(file, s)) {
@@ -52,7 +52,7 @@ auto wordlist(std::string hash, int func) {
 
 auto numlist(std::string hash, int func) {
     /*
-      Функция которая производит численный перебор словаря
+      Функция которая производит численный перебор
      */
     int i = 0;
     std::string hashes;
@@ -90,7 +90,6 @@ int main() {
     std::cout << "1 - CRACK IT!" << std::endl;
     std::cout << "2 - Generate your own txt" << std::endl;
     std::cin >> choose;
-    std::cout << little_endian("10101010100000101010101010");
     switch (choose) {
         case 1: {
             int func;

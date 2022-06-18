@@ -5,7 +5,7 @@
 #include <iostream>
 
 /*
-Множество функция Fun - функции проводящие операции над битовым потоком
+Множество функций Fun - функции проводящие операции над битовым потоком
     */
 std::bitset<32> FunG(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
     return (x & z) | (~z & y);
@@ -77,7 +77,7 @@ const std::vector<int> s = {
 };
 
 auto make_little_endian(std::string input) {
-    /*
+    /*!
       Функция которая производит запись битовой послед-ти в формате little endian
     */
     std::string litstr;
@@ -91,6 +91,9 @@ auto make_little_endian(std::string input) {
 
 std::string strtobin_sec(std::string &message) {
     std::string binstr;
+    /*!
+      Функция которая переводит строку в битовую последовательность
+    */
 
     for (int i = 0; i < message.length(); i++) {
         binstr += std::bitset<8>(message[i]).to_string();
@@ -99,7 +102,7 @@ std::string strtobin_sec(std::string &message) {
 }
 
 auto tobinsubseq1(std::string &input) {
-    /*
+    /*!
       Функция которая выравнивает битовый поток
     */
 
@@ -115,15 +118,15 @@ auto tobinsubseq1(std::string &input) {
         input_pl_len = 512 - (input_pl.length() % 448);
     }
 
-    for (int i = 1; i < input_pl_len + 1; i++) {
+    for (int i = 1; i < input_pl_len + 1; i++) { //дополнение исходного сообщения нулями
         input_pl.insert(input_bin.length() + i, "0");
     }
 
-    input_pl += make_little_endian(std::bitset<64>(bin_len).to_string());
+    input_pl += make_little_endian(std::bitset<64>(bin_len).to_string()); //добавление длины сообщения к исходному потоку
 
     std::vector<bool> binout;
 
-    for (auto j: input_pl)
+    for (auto j: input_pl) //перевод из string в вектор, содержащий битовую последовательность
         binout.push_back(j == '1');
 
     return binout;
@@ -131,7 +134,7 @@ auto tobinsubseq1(std::string &input) {
 }
 
 auto makesubhash(std::string &input) {
-    /*
+    /*!
       Функция проводящая вычисление хеша по блоку в цикле
     */
 
@@ -145,7 +148,7 @@ auto makesubhash(std::string &input) {
 
         std::vector<std::bitset<32>> blockset = {};
 
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 16; i++) { //разделение битового потока на блоки
             std::string binblock = "";
 
             for (int j = (i * 32); j < ((i + 1) * 32); j++) {
@@ -159,7 +162,7 @@ auto makesubhash(std::string &input) {
             blockset.push_back(std::bitset<32>(make_little_endian(binblock)));
         }
 
-        for (int j = 0; j < 64; j++) {
+        for (int j = 0; j < 64; j++) { //вычисления хэша в цикле
             std::bitset<32> F;
             int g;
 
@@ -188,7 +191,7 @@ auto makesubhash(std::string &input) {
 
         }
 
-
+        //итоговые блоки хэша в битововом формате
         begin_var[0] = MERGE_MD5(begin_var[0], H[0]);
         begin_var[1] = MERGE_MD5(begin_var[1], H[1]);
         begin_var[2] = MERGE_MD5(begin_var[2], H[2]);
@@ -201,8 +204,8 @@ auto makesubhash(std::string &input) {
 }
 
 auto little_endian(std::string input) {
-    /*
-      запись битовой послед-ти в формате 2 бита
+    /*!
+      запись битовой послед-ти в формате little-endian по 2 бита
      */
     std::string litstr;
     for (auto i = input.length() / 2; i > 0; i--) {
@@ -215,7 +218,7 @@ auto little_endian(std::string input) {
 }
 
 auto hash_little_endian(std::bitset<32> &buffer) {
-    /*
+    /*!
       запись битовой послед-ти в формате little endian в 16-й код
      */
     std::stringstream hash_out;
@@ -231,7 +234,7 @@ auto hash_little_endian(std::bitset<32> &buffer) {
 }
 
 auto hash1(std::vector<std::bitset<32>> buffer) {
-    /*
+    /*!
       соединение хеша из 4-х блоков
      */
     std::string hash_str;
@@ -241,8 +244,8 @@ auto hash1(std::vector<std::bitset<32>> buffer) {
     return hash_str;
 }
 
-auto md5(std::string &input) {
-    /*
+auto md5(std::string input) {
+    /*!
       вызов функции hash1 - то есть замыкание
      */
 

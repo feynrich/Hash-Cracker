@@ -18,6 +18,8 @@ std::string alphabet[62] = {"A", "B", "C", "D", "E", "F", "G", "H", "I",
 
 
 auto generator_txt(int pass_leng) {
+    /*! функция, вызывающая выбор режима работы генерации паролей и исполняемые функции
+     */
     std::string string_in_txt;
     std::string answer;
     srand(time(nullptr));
@@ -47,6 +49,9 @@ auto generator_txt(int pass_leng) {
 }
 
 auto normal_order_s1_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
+    /*!
+     функция, заменяющая все s в строке на $
+     */
     if (counter_s == 1) {
 
         pass_array.push_back(word.replace(word.find('s'), 1, "$"));
@@ -62,7 +67,9 @@ auto normal_order_s1_replace(auto &counter_s,std::string word,std::vector <std::
 }
 
 auto normal_order_i1_replace(auto &counter_i,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+     функция, заменяющая все i в строке на 1
+     */
     if (counter_i == 1) {
         pass_array.push_back(word.replace(word.find('i'), 1, "1"));
     }
@@ -77,7 +84,9 @@ auto normal_order_i1_replace(auto &counter_i,std::string word,std::vector <std::
 }
 
 auto normal_order_o_replace(auto &counter_o,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+     функция, заменяющая все o в строке на 0
+     */
     if (counter_o == 1) {
         pass_array.push_back(word.replace(word.find('o'), 1, "0"));
     }
@@ -91,7 +100,9 @@ auto normal_order_o_replace(auto &counter_o,std::string word,std::vector <std::s
 
 }
 auto normal_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+     функция, заменяющая все a в строке на @
+     */
     if (counter_a == 1) {
 
         pass_array.push_back(word.replace(word.find('a'), 1, "@"));
@@ -105,7 +116,9 @@ auto normal_order_a_replace(auto &counter_a,std::string word,std::vector <std::s
     return word;
 }
 auto normal_order_f_replace(auto &counter_f,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+     функция, заменяющая все f в строке на 4
+     */
     if (counter_f == 1) {
         pass_array.push_back(word.replace(word.find('f'), 1, "4"));
     }
@@ -119,7 +132,9 @@ auto normal_order_f_replace(auto &counter_f,std::string word,std::vector <std::s
 
 }
 auto normal_order_e_replace(auto &counter_e,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+     функция, заменяющая все e в строке на 3
+     */
     if (counter_e == 1) {
         pass_array.push_back(word.replace(word.find('e'), 1, "3"));
     }
@@ -133,6 +148,9 @@ auto normal_order_e_replace(auto &counter_e,std::string word,std::vector <std::s
 }
 
 auto normal_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
+    /*!
+     функция, заменяющая все $ в строке на 5
+     */
     if (counter_s == 1) {
 
         pass_array.push_back(word.replace(word.find('$'), 1, "5"));
@@ -146,7 +164,9 @@ auto normal_order_s2_replace(auto &counter_s,std::string word,std::vector <std::
 }
 
 auto normal_order_i2_replace(auto &counter_i,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+     функция, заменяющая все 1 в строке на !
+     */
     if (counter_i == 1) {
 
         pass_array.push_back(word.replace(word.find('1'), 1, "!"));
@@ -160,7 +180,9 @@ auto normal_order_i2_replace(auto &counter_i,std::string word,std::vector <std::
 }
 
 auto reverse_order_s1_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+     функция, заменяющая все s в строке на $ в обратном порядке
+     */
 
     if (counter_s == 1) {
         std::reverse(word.begin(),word.end());
@@ -181,6 +203,9 @@ auto reverse_order_s1_replace(auto &counter_s,std::string word,std::vector <std:
 }
 
 auto reverse_order_i1_replace(auto  &counter_i,std::string word,std::vector <std::string> &pass_array) {
+    /*!
+    функция, заменяющая все i в строке на 1 в обратном порядке
+    */
     if (counter_i == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('i'), 1, "1");
@@ -200,7 +225,9 @@ auto reverse_order_i1_replace(auto  &counter_i,std::string word,std::vector <std
 }
 
 auto reverse_order_o_replace(auto  &counter_o,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+    функция, заменяющая все o в строке на 0 в обратном порядке
+    */
     if (counter_o == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('o'), 1, "0");
@@ -219,7 +246,9 @@ auto reverse_order_o_replace(auto  &counter_o,std::string word,std::vector <std:
     return word;
 }
 auto reverse_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+    функция, заменяющая все a в строке на @ в обратном порядке
+    */
     if (counter_a == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('a'), 1, "@");
@@ -241,7 +270,9 @@ auto reverse_order_a_replace(auto &counter_a,std::string word,std::vector <std::
 
 }
 auto reverse_order_f_replace(auto  &counter_f,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+    функция, заменяющая все f в строке на 4 в обратном порядке
+    */
     if (counter_f == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('f'), 1, "4");
@@ -262,7 +293,9 @@ auto reverse_order_f_replace(auto  &counter_f,std::string word,std::vector <std:
     return word;
 }
 auto reverse_order_e_replace(auto &counter_e,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+    функция, заменяющая все e в строке на 3 в обратном порядке
+    */
     if (counter_e == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('e'), 1, "3");
@@ -284,6 +317,9 @@ auto reverse_order_e_replace(auto &counter_e,std::string word,std::vector <std::
 }
 
 auto reverse_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
+    /*!
+    функция, заменяющая все $ в строке на 5 в обратном порядке
+    */
     if (counter_s == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('$'), 1, "5");
@@ -304,7 +340,9 @@ auto reverse_order_s2_replace(auto &counter_s,std::string word,std::vector <std:
 }
 
 auto reverse_order_i2_replace(auto  &counter_i,std::string word,std::vector <std::string> &pass_array) {
-
+    /*!
+    функция, заменяющая все 1 в строке на ! в обратном порядке
+    */
     if (counter_i == 1) {
         std::reverse(word.begin(),word.end());
         word = word.replace(word.find('1'), 1, "!");
@@ -328,7 +366,9 @@ auto reverse_order_i2_replace(auto  &counter_i,std::string word,std::vector <std
 //replace in normal order
 
 auto by_word_generator_normal_order(int amount_of_words, std::string *word_array) {
-
+    /*!
+    функция, заменящая символы в строке на соответсвенные эквивалентные символы
+    */
     std::string word;
     std::string word_2;
     std::vector<std::string> pass_array;
@@ -365,7 +405,9 @@ auto by_word_generator_normal_order(int amount_of_words, std::string *word_array
 //replace in reverse order
 
 auto by_word_generator_reverse_order(int amount_of_words, std::string  *word_array) {
-
+    /*!
+    функция, заменящая символы в строке на соответсвующие им эквивалентные символы в обратном порядке
+    */
     std::string word;
     std::string word_2;
     std::vector <std::string> pass_array1;
@@ -399,6 +441,9 @@ auto by_word_generator_reverse_order(int amount_of_words, std::string  *word_arr
 }
 
 auto combine(std::vector<std::string> pass_array) {
+    /*!
+    функция, комбинирующая ключевые слова в один пароль
+    */
     std::string str;
     std::ofstream out;
     FILE *file = fopen("..//dic//word_pass.txt", "w+");

@@ -5,7 +5,7 @@
 #include <iostream>
 
 std::bitset<32> ROTRIGHT(std::bitset<32> x, int n) {
-    /*
+    /*!
       Циклический сдвиг вправо
      */
     for (int i = 0; i < n; i++) {
@@ -17,14 +17,14 @@ std::bitset<32> ROTRIGHT(std::bitset<32> x, int n) {
 }
 
 std::bitset<32> XOR(std::bitset<32> x, std::bitset<32> y) {
-    /*
+    /*!
       Логическая операция исключающая "или"
      */
     return x ^ y;
 }
 
 std::bitset<32> MERGE(std::bitset<32> x, std::bitset<32> y) {
-    /*
+    /*!
       Возвращает рез-тат побитового сложения
      */
     int sum0 = x.to_ulong() + y.to_ulong();
@@ -33,7 +33,7 @@ std::bitset<32> MERGE(std::bitset<32> x, std::bitset<32> y) {
 }
 
 std::string strtobin(std::string message) {
-    /*
+    /*!
       Преобразование строки в битовую послед-ть
      */
     std::string binstr;
@@ -46,7 +46,7 @@ std::string strtobin(std::string message) {
 
 
 auto tobinsubseq(std::string &input) {
-    /*
+    /*!
       Функция которая выравнивает битовый поток
      */
 
@@ -71,8 +71,8 @@ auto tobinsubseq(std::string &input) {
 }
 
 auto extrawords(std::bitset<512> &message) {
-    /*
-     Генерация дополнительных слов
+    /*!
+     Генерация дополнительных слов для хэша
     */
 
     int bin_len = 512;
@@ -110,7 +110,7 @@ auto extrawords(std::bitset<512> &message) {
 }
 
 auto initsupvar(std::vector<std::bitset<32>> H, std::vector<std::bitset<32>> sqhash, std::vector<std::bitset<32>> word_64) {
-    /*
+    /*!
      Инициализация вспомогательных элементов
      */
 
@@ -138,8 +138,8 @@ auto initsupvar(std::vector<std::bitset<32>> H, std::vector<std::bitset<32>> sqh
     return SUP;
 }
 
-auto makebinaryhash(std::string &pass) {
-    /*
+auto makebinaryhash(std::string pass) {
+    /*!
      Создание бинарного хэша
      */
 
@@ -152,7 +152,7 @@ auto makebinaryhash(std::string &pass) {
                                       0x1f83d9ab,
                                       0x5be0cd19
     };
-
+    //заранее вычисленные кубические корни натуральных чисел
     const std::vector<std::bitset<32>> root_3 = {0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1,
                                            0x923f82a4, 0xab1c5ed5,
                                            0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe,
@@ -173,13 +173,13 @@ auto makebinaryhash(std::string &pass) {
 
     std::vector<bool> bitmsg = tobinsubseq(pass);
 
-    int N = bitmsg.size() / 512;
+    int N = bitmsg.size() / 512; //количество блоков на 512 бит
 
     std::vector<std::bitset<32>> message;
     std::vector<std::bitset<32>> SUP;
     std::vector<std::bitset<32>> hashedblock;
 
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < N; i++) { //разбиение потока на блоки
         std::string binblock = "";
 
         for (int j = (i * 512); j < ((i + 1) * 512); j++) {
@@ -196,7 +196,7 @@ auto makebinaryhash(std::string &pass) {
 
         SUP = initsupvar(H_vector, root_3, message);
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 8; i++) { //логическое слияние побитовых блоков и вычисленных доп слов
 
             hashedblock.push_back(MERGE(H_vector[i], SUP[i]));
 
@@ -209,7 +209,7 @@ auto makebinaryhash(std::string &pass) {
 }
 
 auto outputhash(std::vector<std::bitset<32>> binhash) {
-    /*
+    /*!
      Возвращает из блоков созданную отхэшированную строку
     */
 
@@ -227,12 +227,10 @@ auto outputhash(std::vector<std::bitset<32>> binhash) {
 }
 
 auto sha256(std::string pass) {
-    /*
+    /*!
      Возвращает итоговый хэш
      */
-    std::string hash = outputhash(makebinaryhash(pass));
-
-    return hash;
+    return outputhash(makebinaryhash(pass));;
 }
 
 
