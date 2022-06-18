@@ -8,19 +8,31 @@
     Множество функций Fun - функции проводящие операции над битовым потоком
     */
 std::bitset<32> FunG(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
+        /**
+        Множество функций Fun - функции проводящие операции над битовым потоком
+        */
     return (x & z) | (~z & y);
 
 }
 
 std::bitset<32> FunF(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
+    /**
+    Множество функций Fun - функции проводящие операции над битовым потоком
+    */
     return (x & y) | (~x & z);
 }
 
 std::bitset<32> FunH(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
+    /**
+    Множество функций Fun - функции проводящие операции над битовым потоком
+    */
     return x ^ y ^ z;
 }
 
 std::bitset<32> FunI(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
+    /**
+    Множество функций Fun - функции, проводящие операции над битовым потоком
+    */
     return y ^ (x | ~z);
 }
     /**
@@ -80,7 +92,7 @@ const std::vector<int> s = {
       Функция которая производит запись битовой послед-ти в формате little endian
       * @param string - строка для изменения
     */
-auto make_little_endian(std::string &input) {
+auto make_little_endian(std::string const&input) {
    
     std::string litstr;
     for (auto i = input.length() / 8; i > 0; i--) {
@@ -94,7 +106,7 @@ auto make_little_endian(std::string &input) {
       Функция которая переводит строку в битовую последовательность
       * @param message - строка для изменения
     */
-std::string strtobin_sec(std::string &message) {
+std::string strtobin_sec(std::string const& message) {
     std::string binstr;
 
     for (int i = 0; i < message.length(); i++) {
@@ -209,7 +221,7 @@ auto makesubhash(std::string &input) {
       запись битовой послед-ти в формате little-endian по 2 бита
       * @param string - строка для записи
      */
-auto little_endian(std::string &input) {
+auto little_endian(std::string const&input) {
     
     std::string litstr;
     for (auto i = input.length() / 2; i > 0; i--) {
