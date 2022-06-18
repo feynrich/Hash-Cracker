@@ -3,14 +3,14 @@ project(Hash-Cracker)
 set(CMAKE_CXX_STANDARD 20)
 
 
-# Prepare doctest for other targets to us
-# Make test executable
 enable_testing()
+add_subdirectory(external)
 
-add_library(test_main OBJECT src/md5.cpp src/gen.cpp src/sha.cpp)
+set(source_cpp src/md5.cpp src/gen.cpp src/sha.cpp )
 
-add_executable(tests_hash_cracker src/tests.cpp $<TARGET_OBJECTS:test_main>)
-add_test(NAME test_hash_cracker COMMAND test1)
+add_executable(test_hash_cracker src/tests.cpp ${source_cpp})
+target_link_libraries(test_hash_cracker PUBLIC doctest)
 
 
-add_executable(proj src/main.cpp src/gen.h)
+add_executable(proj src/main.cpp ${source_cpp})
+

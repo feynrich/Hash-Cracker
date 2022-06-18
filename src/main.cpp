@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "md5.cpp"
-#include "sha.cpp"
-#include "gen.cpp"
+#include "md5.h"
+#include "sha.h"
+#include "gen.h"
 
 #define UNICODE
 

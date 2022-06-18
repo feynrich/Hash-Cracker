@@ -35,9 +35,9 @@ TEST_CASE ("Checking string to binary") {
 }
 
 TEST_CASE ("Checking logic operation") {
-    std::bitset<32> x = std::bitset<32>("101010101");
-    std::bitset<32> y = std::bitset<32>("101010101001010110");
-    std::bitset<32> z = std::bitset<32>("10101010101010101");
+            std::bitset<32> x = std::bitset<32>("101010101");
+            std::bitset<32> y = std::bitset<32>("101010101001010110");
+            std::bitset<32> z = std::bitset<32>("10101010101010101");
             REQUIRE(MERGE_MD5(x, y).to_string() == "00000000000000101010101110101011");
             REQUIRE(FunH(x, y, z).to_string() == "00000000000000111111111001010110");
             REQUIRE(FunI(x, y, z).to_string() == "11111111111111000000000110101001");
@@ -55,12 +55,12 @@ TEST_CASE ("Checking replace in normal order") {
 }
 
 TEST_CASE ("Checking replace in reverse order") {
-    auto counter_i = 2;
-    auto counter_s = 2;
-    auto str = std::string ("asisoi");
+    auto counter_i = 1;
+    auto counter_s = 1;
+    auto str = std::string ("aisoi");
     auto vec = std::vector <std::string> ({"1"});
-            REQUIRE(reverse_order_s1_replace(counter_s,str,vec) == std::string("asi$oi"));
-            REQUIRE(reverse_order_i1_replace(counter_i, str, vec) == std::string("asiso1"));
+            REQUIRE(reverse_order_s1_replace(counter_s,str,vec) == std::string("ai$oi"));
+            REQUIRE(reverse_order_i1_replace(counter_i, str, vec) == std::string("aiso1"));
 }
 
 

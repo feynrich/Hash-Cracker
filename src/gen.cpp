@@ -59,8 +59,6 @@ auto generator_txt(int pass_leng) {
 * @return изменный после замены символов пароль
 */
 auto normal_order_s1_replace(int counter_s,std::string word,std::vector <std::string> &pass_array)  {
-
-
     if (counter_s == 1) {
 
         pass_array.push_back(word.replace(word.find('s'), 1, "$"));
