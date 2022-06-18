@@ -18,7 +18,9 @@ std::string alphabet[62] = {"A", "B", "C", "D", "E", "F", "G", "H", "I",
 
 
 auto generator_txt(int pass_leng) {
-    /*! функция, вызывающая выбор режима работы генерации паролей и исполняемые функции
+     /*!
+     функция, иницирует создание рандомных паролей на основе колиства символов в данном пароле
+     pass_leng - отвечает за длину пароля
      */
     std::string string_in_txt;
     std::string answer;
@@ -49,9 +51,13 @@ auto generator_txt(int pass_leng) {
 }
 
 auto normal_order_s1_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
-    /*!
+    /**
      функция, заменяющая все s в строке на $
-     */
+     на вход приходит переменная - word введенная пользователем как возможная вариация для пароля
+     возвращается уже изменненное перенменная word после действий самой функции
+     и добавляет в pass_array полученный(-ые) изменения word
+    
+    */
     if (counter_s == 1) {
 
         pass_array.push_back(word.replace(word.find('s'), 1, "$"));
@@ -69,6 +75,9 @@ auto normal_order_s1_replace(auto &counter_s,std::string word,std::vector <std::
 auto normal_order_i1_replace(auto &counter_i,std::string word,std::vector <std::string> &pass_array) {
     /*!
      функция, заменяющая все i в строке на 1
+     на вход приходит переменная - word измененная предыдущей функцией 
+     возвращается уже изменненное перенменная word после действий самой функции
+     и добавляет в pass_array полученный(-ые) изменения word
      */
     if (counter_i == 1) {
         pass_array.push_back(word.replace(word.find('i'), 1, "1"));
@@ -86,6 +95,10 @@ auto normal_order_i1_replace(auto &counter_i,std::string word,std::vector <std::
 auto normal_order_o_replace(auto &counter_o,std::string word,std::vector <std::string> &pass_array) {
     /*!
      функция, заменяющая все o в строке на 0
+     на вход приходит переменная - word измененная предыдущей функцией 
+     возвращается уже изменненное перенменная word после действий самой функции
+     и добавляет в pass_array полученный(-ые) изменения word
+     
      */
     if (counter_o == 1) {
         pass_array.push_back(word.replace(word.find('o'), 1, "0"));
@@ -102,6 +115,9 @@ auto normal_order_o_replace(auto &counter_o,std::string word,std::vector <std::s
 auto normal_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
     /*!
      функция, заменяющая все a в строке на @
+     на вход приходит переменная - word измененная предыдущей функцией 
+     возвращается уже изменненное перенменная word после действий самой функции
+     и добавляет в pass_array полученный(-ые) изменения word
      */
     if (counter_a == 1) {
 
@@ -118,6 +134,9 @@ auto normal_order_a_replace(auto &counter_a,std::string word,std::vector <std::s
 auto normal_order_f_replace(auto &counter_f,std::string word,std::vector <std::string> &pass_array) {
     /*!
      функция, заменяющая все f в строке на 4
+     на вход приходит переменная - word измененная предыдущей функцией 
+     возвращается уже изменненное перенменная word после действий самой функции
+     и добавляет в pass_array полученный(-ые) изменения word
      */
     if (counter_f == 1) {
         pass_array.push_back(word.replace(word.find('f'), 1, "4"));
@@ -134,6 +153,9 @@ auto normal_order_f_replace(auto &counter_f,std::string word,std::vector <std::s
 auto normal_order_e_replace(auto &counter_e,std::string word,std::vector <std::string> &pass_array) {
     /*!
      функция, заменяющая все e в строке на 3
+     на вход приходит переменная - word измененная предыдущей функцией 
+     возвращается уже изменненное перенменная word после действий самой функции
+     и добавляет в pass_array полученный(-ые) изменения word
      */
     if (counter_e == 1) {
         pass_array.push_back(word.replace(word.find('e'), 1, "3"));
@@ -150,6 +172,9 @@ auto normal_order_e_replace(auto &counter_e,std::string word,std::vector <std::s
 auto normal_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
     /*!
      функция, заменяющая все $ в строке на 5
+     на вход приходит переменная - word измененная предыдущей функцией 
+     возвращается уже изменненное перенменная word после действий самой функции
+     и добавляет в pass_array полученный(-ые) изменения word
      */
     if (counter_s == 1) {
 
@@ -166,6 +191,9 @@ auto normal_order_s2_replace(auto &counter_s,std::string word,std::vector <std::
 auto normal_order_i2_replace(auto &counter_i,std::string word,std::vector <std::string> &pass_array) {
     /*!
      функция, заменяющая все 1 в строке на !
+     на вход приходит переменная - word измененная предыдущей функцией 
+     возвращается уже изменненное перенменная word после действий самой функции
+     и добавляет в pass_array полученный(-ые) изменения word
      */
     if (counter_i == 1) {
 
@@ -182,6 +210,9 @@ auto normal_order_i2_replace(auto &counter_i,std::string word,std::vector <std::
 auto reverse_order_s1_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
     /*!
      функция, заменяющая все s в строке на $ в обратном порядке
+     на вход приходит переменная - word измененная предыдущей функцией 
+     возвращается уже изменненное перенменная word после действий самой функции
+     и добавляет в pass_array полученный(-ые) изменения word
      */
 
     if (counter_s == 1) {
@@ -205,6 +236,9 @@ auto reverse_order_s1_replace(auto &counter_s,std::string word,std::vector <std:
 auto reverse_order_i1_replace(auto  &counter_i,std::string word,std::vector <std::string> &pass_array) {
     /*!
     функция, заменяющая все i в строке на 1 в обратном порядке
+    на вход приходит переменная - word введенная пользователем как возможная вариация для пароля
+    возвращается уже изменненное перенменная word после действий самой функции
+    и добавляет в pass_array полученный(-ые) изменения word
     */
     if (counter_i == 1) {
         std::reverse(word.begin(),word.end());
@@ -227,6 +261,9 @@ auto reverse_order_i1_replace(auto  &counter_i,std::string word,std::vector <std
 auto reverse_order_o_replace(auto  &counter_o,std::string word,std::vector <std::string> &pass_array) {
     /*!
     функция, заменяющая все o в строке на 0 в обратном порядке
+    на вход приходит переменная - word измененная предыдущей функцией 
+    возвращается уже изменненное перенменная word после действий самой функции
+    и добавляет в pass_array полученный(-ые) изменения word
     */
     if (counter_o == 1) {
         std::reverse(word.begin(),word.end());
@@ -248,6 +285,9 @@ auto reverse_order_o_replace(auto  &counter_o,std::string word,std::vector <std:
 auto reverse_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
     /*!
     функция, заменяющая все a в строке на @ в обратном порядке
+    на вход приходит переменная - word измененная предыдущей функцией 
+    возвращается уже изменненное перенменная word после действий самой функции
+    и добавляет в pass_array полученный(-ые) изменения word
     */
     if (counter_a == 1) {
         std::reverse(word.begin(),word.end());
@@ -272,6 +312,9 @@ auto reverse_order_a_replace(auto &counter_a,std::string word,std::vector <std::
 auto reverse_order_f_replace(auto  &counter_f,std::string word,std::vector <std::string> &pass_array) {
     /*!
     функция, заменяющая все f в строке на 4 в обратном порядке
+    на вход приходит переменная - word измененная предыдущей функцией 
+    возвращается уже изменненное перенменная word после действий самой функции
+    и добавляет в pass_array полученный(-ые) изменения word
     */
     if (counter_f == 1) {
         std::reverse(word.begin(),word.end());
@@ -295,6 +338,9 @@ auto reverse_order_f_replace(auto  &counter_f,std::string word,std::vector <std:
 auto reverse_order_e_replace(auto &counter_e,std::string word,std::vector <std::string> &pass_array) {
     /*!
     функция, заменяющая все e в строке на 3 в обратном порядке
+    на вход приходит переменная - word измененная предыдущей функцией 
+    возвращается уже изменненное перенменная word после действий самой функции
+    и добавляет в pass_array полученный(-ые) изменения word
     */
     if (counter_e == 1) {
         std::reverse(word.begin(),word.end());
@@ -319,6 +365,9 @@ auto reverse_order_e_replace(auto &counter_e,std::string word,std::vector <std::
 auto reverse_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
     /*!
     функция, заменяющая все $ в строке на 5 в обратном порядке
+    на вход приходит переменная - word измененная предыдущей функцией 
+    возвращается уже изменненное перенменная word после действий самой функции
+    и добавляет в pass_array полученный(-ые) изменения word
     */
     if (counter_s == 1) {
         std::reverse(word.begin(),word.end());
@@ -342,6 +391,9 @@ auto reverse_order_s2_replace(auto &counter_s,std::string word,std::vector <std:
 auto reverse_order_i2_replace(auto  &counter_i,std::string word,std::vector <std::string> &pass_array) {
     /*!
     функция, заменяющая все 1 в строке на ! в обратном порядке
+    на вход приходит переменная - word измененная предыдущей функцией 
+    возвращается уже изменненное перенменная word после действий самой функции
+    и добавляет в pass_array полученный(-ые) изменения word
     */
     if (counter_i == 1) {
         std::reverse(word.begin(),word.end());
@@ -480,6 +532,9 @@ auto combine(std::vector<std::string> pass_array) {
 }
 
 int main_generator() {
+     /*! 
+        функция, вызывающая выбор режима работы генерации паролей и исполняемые функции
+     */
     int choose;
     std::cout << "Choose type of password generation:"
                  "\n1 - random generation"
