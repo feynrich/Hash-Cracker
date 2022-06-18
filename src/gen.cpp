@@ -48,7 +48,8 @@ auto generator_txt(int pass_leng) {
     }
 }
 
-auto normal_order_s1_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
+auto normal_order_s1_replace(auto counter_s,std::string word,std::vector <std::string> &pass_array) -> std::string {
+
     /*!
      функция, заменяющая все s в строке на $
      */
@@ -66,7 +67,7 @@ auto normal_order_s1_replace(auto &counter_s,std::string word,std::vector <std::
 
 }
 
-auto normal_order_i1_replace(auto &counter_i,std::string word,std::vector <std::string> &pass_array) {
+auto normal_order_i1_replace(int counter_i,std::string word,std::vector <std::string> &pass_array) {
     /*!
      функция, заменяющая все i в строке на 1
      */
@@ -366,7 +367,7 @@ auto reverse_order_i2_replace(auto  &counter_i,std::string word,std::vector <std
 //replace in normal order
 
 auto by_word_generator_normal_order(int amount_of_words, std::string *word_array) {
-    /*!
+    /**
     функция, заменящая символы в строке на соответсвенные эквивалентные символы
     */
     std::string word;
@@ -445,7 +446,6 @@ auto combine(std::vector<std::string> pass_array) {
     функция, комбинирующая ключевые слова в один пароль
     */
     std::string str;
-    std::ofstream out;
     FILE *file = fopen("..//dic//word_pass.txt", "w+");
     for (int i = 0; i <= pass_array.size(); i++) {
         if (pass_array[i].empty()) {
@@ -532,7 +532,6 @@ int main_generator() {
                 int count = 0;
 
 
-                std::ofstream out;
                 FILE *file = fopen("..//dic//word_pass.txt", "w+");
                 for (int i = 0; i <= pass_array_sum.size(); i++){
                     const char * char_pass = pass_array_sum[i].data();

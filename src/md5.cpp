@@ -2,7 +2,7 @@
 #include<string>
 #include<vector>
 #include<sstream>
-#include <iostream>
+#include<iostream>
 
 /*
 Множество функций Fun - функции проводящие операции над битовым потоком

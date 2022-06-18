@@ -3,7 +3,7 @@
 #include "doctest.h"
 #include "src/md5.h"
 #include "src/sha.h"
-
+#include "src/gen.h"
 TEST_CASE ("Checking MD5 hash") {
 
             REQUIRE(md5("smartlms") == "7a2e6ee2b4cdb99b1e7f8fc00a719583");
@@ -20,15 +20,14 @@ TEST_CASE ("Checking SHA2 hash") {
             REQUIRE(sha256("pa$$word") == "6a158d9847a80e99511b2a7866233e404b305fdb7c953a30deb65300a57a0655");
 }
 
-TEST_CASE ("Checking little-endian") {
-            REQUIRE(make_little_endian("1234567891011121314") == "9101112112345678");
-            REQUIRE(make_little_endian("10101010100000101010101010") == "101010101000001010101010");
-            REQUIRE(little_endian("110011001010011001010110") == "100101011001101000110011");
-            REQUIRE(little_endian("qawsedrftgyhujiol") == "ioujyhtgrfedwsqa");
+TEST_CASE ("Checking replace in normal order") {
+            auto counter_i = 1;
+            auto counter_s = 1;
+            auto str = std::string ("iosafe");
+            auto vec = std::vector <std::string> ({"1"});
+            REQUIRE(normal_order_s1_replace(counter_s,str,vec) == std::string("1osafe"));
+            //REQUIRE(normal_order_s1_replace(counter_s, word, pass_array) == "io$afe");
 }
-
-
-
 
 
 
