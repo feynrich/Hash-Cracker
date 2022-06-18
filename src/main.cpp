@@ -8,7 +8,7 @@
 #define UNICODE
 
 #include <windows.h>
-    /**
+    /*!
     * Функция вызывающая хэш-функцию
     *  @param pass - изменяемая строка и func - инициализатор функции
     */
@@ -25,7 +25,7 @@ std::string hashfunc(std::string pass, int func) {
     return nullptr;
 
 }
-    /**
+    /*!
       * Функция которая запускает перебор пароля по словарю
       * @param hash - изменяемая строка и func - инициализатор функции
     */
@@ -51,7 +51,7 @@ auto wordlist(std::string hash, int func) {
     std::cout << "No match found.";
     exit(0);
 }
-      /**
+      /*!
       Функция которая производит численный перебор
       * @param hash - изменяемая строка и func - инициализатор функции
      */
@@ -72,11 +72,11 @@ auto numlist(std::string hash, int func) {
         i++;
     }
 }
-     /**
+     /*!
       Функция main - рут функция проекта
      */
 int main() {
-    /*
+    /*!
       Функция main - рут функция проекта
      */
     int choose;
