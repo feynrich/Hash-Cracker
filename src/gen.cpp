@@ -56,6 +56,7 @@ auto generator_txt(int pass_leng) {
      * @param counter_s - количество букв s в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto normal_order_s1_replace(int counter_s,std::string word,std::vector <std::string> &pass_array)  {
 
@@ -78,6 +79,7 @@ auto normal_order_s1_replace(int counter_s,std::string word,std::vector <std::st
      * @param counter_i - количество букв i в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto normal_order_i1_replace(int counter_i,std::string word,std::vector <std::string> &pass_array) {
     
@@ -98,6 +100,7 @@ auto normal_order_i1_replace(int counter_i,std::string word,std::vector <std::st
      * @param counter_o - количество букв o в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto normal_order_o_replace(auto &counter_o,std::string word,std::vector <std::string> &pass_array) {
     
@@ -118,6 +121,7 @@ auto normal_order_o_replace(auto &counter_o,std::string word,std::vector <std::s
      * @param counter_a - количество букв a в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto normal_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
     
@@ -138,6 +142,7 @@ auto normal_order_a_replace(auto &counter_a,std::string word,std::vector <std::s
      * @param counter_f - количество букв f в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto normal_order_f_replace(auto &counter_f,std::string word,std::vector <std::string> &pass_array) {
    
@@ -158,6 +163,7 @@ auto normal_order_f_replace(auto &counter_f,std::string word,std::vector <std::s
      * @param counter_e - количество букв e в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto normal_order_e_replace(auto &counter_e,std::string word,std::vector <std::string> &pass_array) {
    
@@ -176,7 +182,8 @@ auto normal_order_e_replace(auto &counter_e,std::string word,std::vector <std::s
      функция, заменяющая все $ в строке на 5
      * @param counter_s - количество букв $ в пароле
      * @param pass_array - массив с создаными паролями
-     * @param word - изменяемое слово которое ввел пользователь 
+     * @param word - изменяемое слово которое ввел пользователь
+     * @return изменный после замены символов пароль
      */
 auto normal_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
     
@@ -196,6 +203,7 @@ auto normal_order_s2_replace(auto &counter_s,std::string word,std::vector <std::
      * @param counter_i - количество букв 1 в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto normal_order_i2_replace(auto &counter_i,std::string word,std::vector <std::string> &pass_array) {
     if (counter_i == 1) {
@@ -214,6 +222,7 @@ auto normal_order_i2_replace(auto &counter_i,std::string word,std::vector <std::
      * @param counter_s - количество букв s в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto reverse_order_s1_replace(int counter_s,std::string word,std::vector <std::string> &pass_array) {
 
@@ -240,6 +249,7 @@ auto reverse_order_s1_replace(int counter_s,std::string word,std::vector <std::s
      * @param counter_i - количество букв i в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 
 auto reverse_order_i1_replace(int counter_i,std::string word,std::vector <std::string> &pass_array) {
@@ -266,6 +276,7 @@ auto reverse_order_i1_replace(int counter_i,std::string word,std::vector <std::s
      * @param counter_o - количество букв o в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto reverse_order_o_replace(auto  &counter_o,std::string word,std::vector <std::string> &pass_array) {
     if (counter_o == 1) {
@@ -290,6 +301,7 @@ auto reverse_order_o_replace(auto  &counter_o,std::string word,std::vector <std:
      * @param counter_a - количество букв a в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto reverse_order_a_replace(auto &counter_a,std::string word,std::vector <std::string> &pass_array) {
    
@@ -318,6 +330,7 @@ auto reverse_order_a_replace(auto &counter_a,std::string word,std::vector <std::
      * @param counter_f - количество букв f в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto reverse_order_f_replace(auto  &counter_f,std::string word,std::vector <std::string> &pass_array) {
     
@@ -345,6 +358,7 @@ auto reverse_order_f_replace(auto  &counter_f,std::string word,std::vector <std:
      * @param counter_e - количество букв e в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto reverse_order_e_replace(auto &counter_e,std::string word,std::vector <std::string> &pass_array) {
     
@@ -372,6 +386,7 @@ auto reverse_order_e_replace(auto &counter_e,std::string word,std::vector <std::
      * @param counter_s - количество букв $ в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto reverse_order_s2_replace(auto &counter_s,std::string word,std::vector <std::string> &pass_array) {
    
@@ -398,6 +413,7 @@ auto reverse_order_s2_replace(auto &counter_s,std::string word,std::vector <std:
      * @param counter_i - количество букв 1 в пароле
      * @param pass_array - массив с создаными паролями
      * @param word - изменяемое слово которое ввел пользователь 
+     * @return изменный после замены символов пароль
      */
 auto reverse_order_i2_replace(auto  &counter_i,std::string word,std::vector <std::string> &pass_array) {
     
@@ -419,13 +435,16 @@ auto reverse_order_i2_replace(auto  &counter_i,std::string word,std::vector <std
     return word;
 
 }
-
-
-//replace in normal order
-
+      /*!
+     функция, заменящая символы в строке на соответсвенные эквивалентные символы
+     * @param amount_of_words - количество слов введенных пользователей
+     * @param word_array - слова введеннные пользователем
+     * @param word - изменяемое слово которое ввел пользователь 
+     * @return pass_array - массив изменных слов
+     */
 auto by_word_generator_normal_order(int amount_of_words, std::string *word_array) {
     /**
-    функция, заменящая символы в строке на соответсвенные эквивалентные символы
+    
     */
     std::string word;
     std::string word_2;
@@ -457,15 +476,15 @@ auto by_word_generator_normal_order(int amount_of_words, std::string *word_array
     return pass_array;
 
 }
-
-
-
-//replace in reverse order
-
+     /*!
+     функция, заменящая символы в строке на соответсвующие им эквивалентные символы в обратном порядке
+     * @param amount_of_words - количество слов введенных пользователей
+     * @param word_array - слова введеннные пользователем
+     * @param word - изменяемое слово которое ввел пользователь 
+     * @return pass_array1 - массив изменных слов
+     */
 auto by_word_generator_reverse_order(int amount_of_words, std::string  *word_array) {
-    /*!
-    функция, заменящая символы в строке на соответсвующие им эквивалентные символы в обратном порядке
-    */
+    
     std::string word;
     std::string word_2;
     std::vector <std::string> pass_array1;
@@ -497,11 +516,13 @@ auto by_word_generator_reverse_order(int amount_of_words, std::string  *word_arr
     }
     return pass_array1;
 }
-
+     /*!
+     функция, комбинирующая ключевые слова в один пароль
+     * @param pass_array - массив со всеми измененными словами
+     * @return word_pass.txt - словарь в текстовом виде со всеми измененными словами
+     */
 auto combine(std::vector<std::string> pass_array) {
-    /*!
-    функция, комбинирующая ключевые слова в один пароль
-    */
+    
     std::string str;
     FILE *file = fopen("..//dic//word_pass.txt", "w+");
     for (int i = 0; i <= pass_array.size(); i++) {
@@ -535,7 +556,9 @@ auto combine(std::vector<std::string> pass_array) {
     return 0;
 
 }
-
+  /*!
+     Главная функция, для выбора режима работы программы
+  */
 int main_generator() {
     int choose;
     std::cout << "Choose type of password generation:"
