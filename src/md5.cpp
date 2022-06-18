@@ -4,8 +4,8 @@
 #include<sstream>
 #include<iostream>
 
-/*
-Множество функций Fun - функции проводящие операции над битовым потоком
+    /**
+    Множество функций Fun - функции проводящие операции над битовым потоком
     */
 std::bitset<32> FunG(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
     return (x & z) | (~z & y);
@@ -23,12 +23,12 @@ std::bitset<32> FunH(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
 std::bitset<32> FunI(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
     return y ^ (x | ~z);
 }
-
-std::bitset<32> ROTLEFT(std::bitset<32> x, int n) {
-     /**
+    /**
       Циклический сдвиг влево
       * @param n - каунтер
     */
+std::bitset<32> ROTLEFT(std::bitset<32> x, int n) {
+     
     for (int i = 0; i < n; i++) {
         int bit = x[31];
         x = x << 1;
