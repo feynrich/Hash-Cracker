@@ -25,7 +25,7 @@ std::bitset<32> FunI(std::bitset<32> x, std::bitset<32> y, std::bitset<32> z) {
 }
 
 std::bitset<32> ROTLEFT(std::bitset<32> x, int n) {
-    /*
+    /**
       Циклический сдвиг влево
     */
     for (int i = 0; i < n; i++) {
@@ -77,8 +77,9 @@ const std::vector<int> s = {
 };
 
 auto make_little_endian(std::string input) {
-    /*!
+    /**
       Функция которая производит запись битовой послед-ти в формате little endian
+      input: входная строка
     */
     std::string litstr;
     for (auto i = input.length() / 8; i > 0; i--) {
@@ -91,7 +92,7 @@ auto make_little_endian(std::string input) {
 
 std::string strtobin_sec(std::string &message) {
     std::string binstr;
-    /*!
+    /**
       Функция которая переводит строку в битовую последовательность
     */
 
@@ -102,8 +103,9 @@ std::string strtobin_sec(std::string &message) {
 }
 
 auto tobinsubseq1(std::string &input) {
-    /*!
+    /**
       Функция которая выравнивает битовый поток
+      input: битовой поток для выравнивания
     */
 
     std::string input_bin = strtobin_sec(input);
@@ -136,6 +138,7 @@ auto tobinsubseq1(std::string &input) {
 auto makesubhash(std::string &input) {
     /*!
       Функция проводящая вычисление хеша по блоку в цикле
+      input: битовый поток длиной 512 бита
     */
 
     std::vector<bool> bitmsg = tobinsubseq1(input);
@@ -204,7 +207,7 @@ auto makesubhash(std::string &input) {
 }
 
 auto little_endian(std::string input) {
-    /*!
+    /**
       запись битовой послед-ти в формате little-endian по 2 бита
      */
     std::string litstr;
@@ -218,8 +221,9 @@ auto little_endian(std::string input) {
 }
 
 auto hash_little_endian(std::bitset<32> &buffer) {
-    /*!
+    /**
       запись битовой послед-ти в формате little endian в 16-й код
+      buffer: битовый массив (блок хеша)
      */
     std::stringstream hash_out;
     std::string hashdigest;
@@ -234,8 +238,9 @@ auto hash_little_endian(std::bitset<32> &buffer) {
 }
 
 auto hash1(std::vector<std::bitset<32>> buffer) {
-    /*!
+    /**
       соединение хеша из 4-х блоков
+      buffer: вектор, содержащий блоки хеша
      */
     std::string hash_str;
     for (int i = 0; i < 4; i++) {
@@ -245,8 +250,9 @@ auto hash1(std::vector<std::bitset<32>> buffer) {
 }
 
 auto md5(std::string input) {
-    /*!
+    /**
       вызов функции hash1 - то есть замыкание
+      input: строка для хеширования
      */
 
     return hash1(makesubhash(input));
