@@ -27,12 +27,12 @@ std::bitset<32> FunF(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z)
 std::bitset<32> FunH(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
     return x ^ y ^ z;
 }
-
-std::bitset<32> FunI(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
-    /*!
+/*!
     FunF - логическая операция для 4-го этапа выичисления в цикле
      @param: x, y, z - битовые потоки
     */
+std::bitset<32> FunI(std::bitset<32> &x, std::bitset<32> &y, std::bitset<32> &z) {
+    
     return y ^ (x | ~z);
 }
     /*!
@@ -81,7 +81,7 @@ const std::vector<std::bitset<32>> const_ = {
         0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391
 };
 
-const std::vector<int> s = {
+const std::vector<int> cyclic_shift = {
         7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
         5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
         4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
@@ -202,7 +202,7 @@ auto makesubhash(std::string &input) {
             H[0] = H[3];
             H[3] = H[2];
             H[2] = H[1];
-            H[1] = MERGE_MD5(H[1], ROTLEFT(F, s[j]));
+            H[1] = MERGE_MD5(H[1], ROTLEFT(F, cyclic_shift[j]));
 
         }
 
